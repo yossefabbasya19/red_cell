@@ -22,18 +22,17 @@ PageViewModel customPageViewModel(
     ),
     bodyWidget: Text(
       title,
-      style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w700),
+      style: Theme
+          .of(context)
+          .textTheme
+          .titleLarge,
     ),
     footer: Padding(
       padding: const EdgeInsets.all(16.0),
       child: Text(
         textAlign: TextAlign.center,
         subTitle,
-        style: GoogleFonts.poppins(
-          fontSize: 15,
-          fontWeight: FontWeight.w400,
-          color: ColorsManeger.gray,
-        ),
+        style:Theme.of(context).textTheme.titleSmall,
       ),
     ),
   );

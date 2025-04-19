@@ -4,6 +4,8 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:red_cell/core/DM/on_boarding_DM.dart';
 import 'package:red_cell/core/assets_maneger/assets_maneger.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
+import 'package:red_cell/core/my_routes/my_routes.dart';
+import 'package:red_cell/core/share_pref/share_preference.dart';
 import 'package:red_cell/views/on_boarding/widegts/page_view_model.dart';
 
 class OnBoarding extends StatefulWidget {
@@ -14,6 +16,11 @@ class OnBoarding extends StatefulWidget {
 }
 
 class _OnBoardingState extends State<OnBoarding> {
+  @override
+  void dispose() {
+    SharePreference.setOnBoardingStates(true);
+    super.dispose();
+  }
   List<OnBoardingDm> itemsData = [
     OnBoardingDm(
       image: AssetsManeger.onBoarding1,
@@ -58,6 +65,7 @@ class _OnBoardingState extends State<OnBoarding> {
         ),
         controlsPadding: EdgeInsets.symmetric(vertical: 16),
         onDone: () {
+          Navigator.pushReplacementNamed(context, MyRoutes.login);
         },
         onSkip: () {},
         done: Text(
