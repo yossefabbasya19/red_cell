@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1017791454388",
+    "project_id": "red-cell-12a75",
+    "storage_bucket": "red-cell-12a75.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1017791454388:android:8b8bdd16de839d32b2cbe1",
+        "android_client_info": {
+          "package_name": "com.example.red_cell"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWaXCuUzkJ9evf_nproIPoZx4YFCd5PDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
