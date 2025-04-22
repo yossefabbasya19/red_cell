@@ -7,4 +7,5 @@ abstract class ColorsManeger {
   static const Color redWithOpacity1 = Color(0xffFCEDEE);
   static const Color redWithOpacity5 = Color(0xffFDDBDD);
   static const Color gray = Color(0xff8D8D8D);
+  static const Color borderColor = Color(0xffE9E2E2);
 }
