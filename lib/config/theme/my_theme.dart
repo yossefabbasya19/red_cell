@@ -4,6 +4,7 @@ import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
 
 abstract class MyTheme {
   static ThemeData light = ThemeData(
+    useMaterial3: false,
     scaffoldBackgroundColor: ColorsManeger.white,
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(

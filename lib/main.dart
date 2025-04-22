@@ -9,6 +9,7 @@ import 'package:red_cell/core/share_pref/share_preference.dart';
 import 'package:red_cell/firebase_options.dart';
 import 'package:red_cell/views/authentication/login/login.dart';
 import 'package:red_cell/views/authentication/signup/signup_first_screen.dart';
+import 'package:red_cell/views/main_layout/main_layout.dart';
 import 'package:red_cell/views/on_boarding/on_boarding.dart';
 
 void main() async {
@@ -41,6 +42,7 @@ class _RedCellState extends State<RedCell> {
       debugShowCheckedModeBanner: false,
       theme: MyTheme.light,
       darkTheme: MyTheme.dark,
+      themeMode:ThemeMode.light,
       routes: MyRoutes.routes,
       //onGenerateRoute: MyRoutes.myRoutes,
       home: FutureBuilder(
@@ -48,7 +50,8 @@ class _RedCellState extends State<RedCell> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.data!) {
-              return Login();
+              return MainLayout();
+              //return Login();
             } else {
               return OnBoarding();
             }
