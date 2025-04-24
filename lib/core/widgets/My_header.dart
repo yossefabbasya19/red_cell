@@ -11,7 +11,8 @@ class MyHeader extends StatelessWidget {
     return Stack(
       children: [
         Image(
-          fit: BoxFit.contain,
+          width: double.infinity,
+          fit: BoxFit.fill,
           image: AssetImage(AssetsManeger.headerImage),
         ),
         Positioned(

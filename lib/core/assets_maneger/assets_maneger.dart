@@ -13,4 +13,5 @@ abstract class AssetsManeger {
   static String requestPlatelet = '$base/request_platelet.png';
   static String requestPlasma = '$base/request_plasma.png';
   static String requestBlood = '$base/request_blood.png';
+  static String donationDetails = '$base/donation_details.png';
 }
