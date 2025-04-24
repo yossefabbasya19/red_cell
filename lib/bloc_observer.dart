@@ -5,6 +5,7 @@ class MyBlocObserver implements BlocObserver{
   @override
   void onChange(BlocBase bloc, Change change) {
     debugPrint(change.toString());
+    debugPrint(bloc.toString());
   }
 
   @override

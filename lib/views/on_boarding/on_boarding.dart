@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:red_cell/core/DM/on_boarding_DM.dart';
 import 'package:red_cell/core/assets_maneger/assets_maneger.dart';
@@ -67,7 +66,9 @@ class _OnBoardingState extends State<OnBoarding> {
         onDone: () {
           Navigator.pushReplacementNamed(context, MyRoutes.login);
         },
-        onSkip: () {},
+        onSkip: () {
+          Navigator.pushReplacementNamed(context, MyRoutes.login);
+        },
         done: Text(
           "done",
           style: Theme.of(context).textTheme.labelMedium,

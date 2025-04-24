@@ -29,80 +29,77 @@ class _LoginState extends State<Login> {
         child: SafeArea(
           child: Padding(
             padding: EdgeInsets.only(top: 16, right: 16, left: 16),
-            child: BlocProvider(
-              create: (context) => LogInCubit(),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  children: [
-                    CustomStatus(titleOne: "Log in", titleTwo: ""),
-                    SizedBox(height: 24),
-                    SocialSign(),
-                    CustomTextFormField(
-                      myKeyboardType: TextInputType.emailAddress,
-                      hintText: "Email",
-                      isPassword: false,
-                      onSaved: (value) {
-                        emailAddress = value!;
-                      },
-                    ),
-                    CustomTextFormField(
-                      hintText: "password",
-                      isPassword: true,
-                      onSaved: (value) {
-                        password = value!;
-                      },
-                    ),
-                    SizedBox(height: 24),
-                    BlocConsumer<LogInCubit, LogInState>(
-                      listener: (context, state) {
-                        if (state is LogInFailure) {
-                          showSnackBar(context, state.errMassage);
-                        } else if (state is LogInSuccess) {
-                          print("state.credential.user!.emailVerified");
-                          if (!state.credential.user!.emailVerified) {
-                            showSnackBar(
-                              context,
-                              "check your email and Verify Email ",
-                            );
-                          } else {
-                            Navigator.pushNamed(context, MyRoutes.mainLayout);
-                          }
-                        }
-                      },
-                      builder: (context, state) {
-                        return CustomElevatedButton(
-                          onPressed: () {
-                            formKey.currentState!.save();
-                            BlocProvider.of<LogInCubit>(
-                              context,
-                            ).logIn(context, emailAddress!, password!);
-                          },
-                          widget:
-                              state is LogInLoading
-                                  ? CircularProgressIndicator(
-                                    color: ColorsManeger.white,
-                                  )
-                                  : Text(
-                                    "Confirm",
-                                    style:
-                                        Theme.of(context).textTheme.labelMedium,
-                                  ),
-                        );
-                      },
-                    ),
-                    CustomTextButtonWithText(
-                      descriptionText: "Don't have an account?",
-                      buttonText: "  Sign up",
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(
-                          context,
-                          MyRoutes.signupFirstScreen,
-                        );
-                      },
-                    ),
-                  ],
-                ),
+            child: Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  CustomStatus(titleOne: "Log in", titleTwo: ""),
+                  SizedBox(height: 24),
+                  SocialSign(),
+                  CustomTextFormField(
+                    myKeyboardType: TextInputType.emailAddress,
+                    hintText: "Email",
+                    isPassword: false,
+                    onSaved: (value) {
+                      emailAddress = value!;
+                    },
+                  ),
+                  CustomTextFormField(
+                    hintText: "password",
+                    isPassword: true,
+                    onSaved: (value) {
+                      password = value!;
+                    },
+                  ),
+                  SizedBox(height: 24),
+                  BlocConsumer<LogInCubit, LogInState>(
+                    listener: (context, state) {
+                      if (state is LogInFailure) {
+                        showSnackBar(context, state.errMassage);
+                      } else if (state is LogInSuccess) {
+                        Navigator.pushNamed(context, MyRoutes.mainLayout,arguments: state.userInfoDm);
+                        /*if (!state.credential.user!.emailVerified) {
+                          showSnackBar(
+                            context,
+                            "check your email and Verify Email ",
+                          );
+                        } else {
+                          Navigator.pushNamed(context, MyRoutes.mainLayout);
+                        }*/
+                      }
+                    },
+                    builder: (context, state) {
+                      return CustomElevatedButton(
+                        onPressed: () {
+                          formKey.currentState!.save();
+                          BlocProvider.of<LogInCubit>(
+                            context,
+                          ).logIn(context, emailAddress!, password!);
+                        },
+                        widget:
+                            state is LogInLoading
+                                ? CircularProgressIndicator(
+                                  color: ColorsManeger.white,
+                                )
+                                : Text(
+                                  "Confirm",
+                                  style:
+                                      Theme.of(context).textTheme.labelMedium,
+                                ),
+                      );
+                    },
+                  ),
+                  CustomTextButtonWithText(
+                    descriptionText: "Don't have an account?",
+                    buttonText: "  Sign up",
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(
+                        context,
+                        MyRoutes.signupFirstScreen,
+                      );
+                    },
+                  ),
+                ],
               ),
             ),
           ),

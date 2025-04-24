@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:red_cell/core/DM/user_info_DM.dart';
 import 'package:red_cell/core/constant.dart';
 import 'package:red_cell/core/helper/show_snack_bar.dart';
-import 'package:red_cell/core/my_routes/my_routes.dart';
 
 abstract class FirebaseAuthentication {
   static CollectionReference users = FirebaseFirestore.instance.collection(
@@ -58,7 +57,7 @@ abstract class FirebaseAuthentication {
         password: userInfoDM.password!,
       );
       final user = FirebaseAuth.instance.currentUser;
-      user?.sendEmailVerification()??'';
+      user?.sendEmailVerification() ?? '';
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         showSnackBar(context, 'The password provided is too weak.');
@@ -81,6 +80,7 @@ abstract class FirebaseAuthentication {
             fireStoreUsersBirthDate: userInfoDm.birthdayDate,
             fireStoreUsersCountry: userInfoDm.country,
             fireStoreUsersGender: userInfoDm.isFemale,
+            'myDonation': [],
           })
           .then((value) => print("User Added"))
           .catchError((error) => print("Failed to add user: $error"));
@@ -88,6 +88,4 @@ abstract class FirebaseAuthentication {
       throw Exception(e);
     }
   }
-
-
 }
