@@ -62,7 +62,7 @@ class _DonationDetailsState extends State<DonationDetails> {
               SizedBox(height: 8),
               CustomElevatedButton(
                 onPressed: () async{
-                  userDonation = await getSpecificUser(userId!);
+                  userDonation = await getSpecificUserField(userId!);
                   userDonation.add(donationDetailsDm.docID);
                   userDonation = userDonation.toSet().toList();
                   FirebaseFirestore.instance

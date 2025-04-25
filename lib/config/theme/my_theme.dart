@@ -6,6 +6,7 @@ abstract class MyTheme {
   static ThemeData light = ThemeData(
     useMaterial3: false,
     scaffoldBackgroundColor: ColorsManeger.white,
+    cardColor: ColorsManeger.white,
     appBarTheme: AppBarTheme(
       color: Colors.transparent,
       elevation: 0,
