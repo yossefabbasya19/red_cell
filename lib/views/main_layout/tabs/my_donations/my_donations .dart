@@ -32,18 +32,16 @@ class _MyDonationsState extends State<MyDonations> {
           MyHeader(title: 'My donate'),
           SizedBox(height: 24),
           FutureBuilder(
-            future: getSpecificUser(userID!),
+            future: getSpecificUserField(userID!),
             builder: (context, snapShot) {
               if (snapShot.hasData) {
                 return Expanded(
                   child: RefreshIndicator(
                     onRefresh: () {
                       return Future(() {
-                        setState(() {
-
-                        });
+                        setState(() {});
                         print("refresh");
-                      },);
+                      });
                     },
                     child: ListView.separated(
                       itemCount: snapShot.data!.length,
@@ -54,6 +52,7 @@ class _MyDonationsState extends State<MyDonations> {
                             if (snapshot.hasData) {
                               return BloodRequestCard(
                                 donationDetailsDm: snapshot.data!,
+                                isMyDonation: true,
                                 isMyPost: false,
                               );
                             } else {

@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_cell/core/DM/donation_details_Dm.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
 import 'package:red_cell/core/extension/string_ex.dart';
 import 'package:red_cell/core/my_routes/my_routes.dart';
+import 'package:red_cell/core/helper/delete_post_from_my_donation.dart';
+import 'package:red_cell/views/authentication/login/cubit/log_in/log_in_cubit.dart';
 
 class BloodRequestCard extends StatefulWidget {
   final bool isMyPost;
+  final bool? isMyDonation;
 
   const BloodRequestCard({
     super.key,
     required this.donationDetailsDm,
-     required this.isMyPost,
+    required this.isMyPost,
+    this.isMyDonation,
   });
 
   final DonationDetailsDm donationDetailsDm;
@@ -20,6 +25,15 @@ class BloodRequestCard extends StatefulWidget {
 }
 
 class _BloodRequestCardState extends State<BloodRequestCard> {
+  late String? userId;
+  List<dynamic> userDonation = [];
+
+  @override
+  void initState() {
+    userId = BlocProvider.of<LogInCubit>(context).userInfoDm.docId;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return widget.isMyPost
@@ -78,12 +92,20 @@ class _BloodRequestCardState extends State<BloodRequestCard> {
                           ),
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.pushNamed(
-                          context,
-                          MyRoutes.donationDetails,
-                          arguments: widget.donationDetailsDm,
-                        );
+                      onPressed: () async {
+                        if (widget.isMyDonation ?? false) {
+                          deletePostFromMyDonations(
+                            context,
+                            widget.donationDetailsDm,
+                            userId!,
+                          );
+                        } else {
+                          Navigator.pushNamed(
+                            context,
+                            MyRoutes.donationDetails,
+                            arguments: widget.donationDetailsDm,
+                          );
+                        }
                       },
                       child: Text('Donate'),
                     ),
