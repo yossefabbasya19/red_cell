@@ -1,11 +1,7 @@
 import "package:bloc/bloc.dart";
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:red_cell/core/DM/user_info_DM.dart';
-import 'package:red_cell/core/constant.dart';
 import 'package:red_cell/core/helper/show_snack_bar.dart';
-import 'package:red_cell/core/remote_storage/get_all_users.dart';
 
 part 'log_in_state.dart';
 
@@ -14,7 +10,7 @@ class LogInCubit extends Cubit<LogInState> {
   /*CollectionReference users = FirebaseFirestore.instance.collection(
     fireStoreUsers,
   );*/
-  UserInfoDm userInfoDm = UserInfoDm();
+  //UserInfoDm userInfoDm = UserInfoDm();
 
   void logIn(BuildContext context, String emailAddress, String password) async {
     emit(LogInLoading());
@@ -22,15 +18,15 @@ class LogInCubit extends Cubit<LogInState> {
        await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: emailAddress, password: password);
       //QuerySnapshot getUsers = await users.get();
-       List<UserInfoDm> allUsers = await getAllUsers();
+       /*List<UserInfoDm> allUsers = await getAllUsers();
       for (int i = 0; i < allUsers.length; i++) {
-        /*Map<String, dynamic> userInMap =
-            getUsers.docs[i].data() as Map<String, dynamic>;*/
+        Map<String, dynamic> userInMap =
+            getUsers.docs[i].data() as Map<String, dynamic>;
         if (allUsers[i].emailAddress == emailAddress) {
           userInfoDm = allUsers[i];
         }
-      }
-      emit(LogInSuccess(userInfoDm: userInfoDm));
+      }*/
+      emit(LogInSuccess(/*userInfoDm: userInfoDm*/));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         showSnackBar(context, 'No user found for that email.');

@@ -19,6 +19,7 @@ class _MapLocationState extends State<MapLocation> {
     return Scaffold(
       appBar: AppBar(title: Text("donation Map")),
       body: GoogleMap(
+
         markers: myMarker,
         onMapCreated: (controller) {
           myMarker.add(

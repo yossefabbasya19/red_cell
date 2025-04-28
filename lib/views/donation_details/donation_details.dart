@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_cell/core/DM/donation_details_Dm.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
 import 'package:red_cell/core/constant.dart';
 import 'package:red_cell/core/my_routes/my_routes.dart';
-import 'package:red_cell/core/remote_storage/get_specific_user.dart';
+import 'package:red_cell/core/remote_storage/get_specific_user_field.dart';
 import 'package:red_cell/core/widgets/custom_eleveted_button.dart';
 import 'package:red_cell/views/authentication/login/cubit/log_in/log_in_cubit.dart';
 import 'package:red_cell/views/donation_details/widgets/blood_type_gridview.dart';
@@ -30,7 +31,7 @@ class _DonationDetailsState extends State<DonationDetails> {
 
   @override
   void initState() {
-    userId = BlocProvider.of<LogInCubit>(context).userInfoDm.docId;
+    userId =FirebaseAuth.instance.currentUser!.uid;
     super.initState();
   }
 

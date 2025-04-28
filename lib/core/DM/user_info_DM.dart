@@ -9,6 +9,7 @@ class UserInfoDm {
   String? country;
   String? phoneNumber;
   bool? isFemale;
+  String? imagePath;
 
   UserInfoDm({
     this.docId,
@@ -19,6 +20,7 @@ class UserInfoDm {
     this.country,
     this.phoneNumber,
     this.isFemale,
+    this.imagePath,
   });
   factory UserInfoDm.fromJson(json,String docId){
     return UserInfoDm(
@@ -29,7 +31,8 @@ class UserInfoDm {
       userName: json[fireStoreUsersUserName],
       password: json[fireStoreUsersPassword],
       emailAddress: json[fireStoreUsersUid],
-      docId: docId
+      docId: docId,
+      imagePath: json[fireStoreUsersProfileImage]
     );
   }
 }

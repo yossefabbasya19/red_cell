@@ -1,11 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_cell/core/DM/donation_details_Dm.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
 import 'package:red_cell/core/extension/string_ex.dart';
 import 'package:red_cell/core/my_routes/my_routes.dart';
 import 'package:red_cell/core/helper/delete_post_from_my_donation.dart';
-import 'package:red_cell/views/authentication/login/cubit/log_in/log_in_cubit.dart';
+import 'package:red_cell/views/main_layout/tabs/home/widgets/card_header.dart';
+import 'package:red_cell/views/my_requests/widgets/hospital_info.dart';
+import 'package:red_cell/views/my_requests/widgets/pateint_name.dart';
+import 'package:red_cell/views/my_requests/widgets/unit_needs.dart';
 
 class BloodRequestCard extends StatefulWidget {
   final bool isMyPost;
@@ -30,12 +33,13 @@ class _BloodRequestCardState extends State<BloodRequestCard> {
 
   @override
   void initState() {
-    userId = BlocProvider.of<LogInCubit>(context).userInfoDm.docId;
+    userId = FirebaseAuth.instance.currentUser!.uid;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    print(widget.isMyPost);
     return widget.isMyPost
         ? SizedBox()
         : Card(
@@ -48,137 +52,13 @@ class _BloodRequestCardState extends State<BloodRequestCard> {
             padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8),
             child: Column(
               children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image(
-                      fit: BoxFit.fill,
-                      width: MediaQuery.sizeOf(context).width * 0.13,
-                      height: MediaQuery.sizeOf(context).height * 0.06,
-                      image: AssetImage(
-                        widget.donationDetailsDm.requestType.selectImage,
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Request ${widget.donationDetailsDm.requestType}",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        Text(
-                          widget.donationDetailsDm.progressState.selectState,
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: ColorsManeger.gray,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Spacer(),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStatePropertyAll(
-                          ColorsManeger.red,
-                        ),
-                        shape: WidgetStatePropertyAll(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                        ),
-                      ),
-                      onPressed: () async {
-                        if (widget.isMyDonation ?? false) {
-                          deletePostFromMyDonations(
-                            context,
-                            widget.donationDetailsDm,
-                            userId!,
-                          );
-                        } else {
-                          Navigator.pushNamed(
-                            context,
-                            MyRoutes.donationDetails,
-                            arguments: widget.donationDetailsDm,
-                          );
-                        }
-                      },
-                      child: Text('Donate'),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    SizedBox(width: 8),
-                    Text(
-                      "pateint",
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        widget.donationDetailsDm.pateintName,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: ColorsManeger.gray,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                CardHeader(donationDetailsDm: widget.donationDetailsDm, userId: userId,isMyDonation: widget.isMyDonation,),
+                PateintName(donationDetailsDm: widget.donationDetailsDm),
                 SizedBox(height: 8),
-                Row(
-                  children: [
-                    SizedBox(width: 8),
-                    Text(
-                      "needs ${widget.donationDetailsDm.totalUnits} units( Remining ${widget.donationDetailsDm.totalUnits})  ",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: ColorsManeger.gray,
-                      ),
-                    ),
-                    Spacer(),
-                    Text(
-                      overflow: TextOverflow.clip,
-                      "until ${widget.donationDetailsDm.validTime}",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    SizedBox(width: 8),
-                  ],
-                ),
+                UnitNeeds(donationDetailsDm: widget.donationDetailsDm),
                 SizedBox(height: 8),
-                Row(
-                  children: [
-                    SizedBox(width: 8),
-                    Icon(
-                      Icons.location_on_outlined,
-                      color: ColorsManeger.redWithOpacity5,
-                    ),
-                    Expanded(
-                      child: Text(
-                        widget.donationDetailsDm.hospitalCityAddress +
-                            " - " +
-                            widget.donationDetailsDm.hospitalGovernorateAddress,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: ColorsManeger.gray,
-                        ),
-                      ),
-                    ),
-                  ],
+                DisplayHospitalInfo(
+                  donationDetailsDm: widget.donationDetailsDm,
                 ),
               ],
             ),
