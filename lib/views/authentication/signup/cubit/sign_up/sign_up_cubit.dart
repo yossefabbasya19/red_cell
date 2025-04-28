@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
 import 'package:red_cell/core/DM/user_info_DM.dart';
-import 'package:red_cell/core/my_routes/my_routes.dart';
 import 'package:red_cell/views/authentication/signup/firebase_authentication/firebase_authentication.dart';
 
 part 'sign_up_state.dart';
@@ -19,18 +18,19 @@ class SignUpCubit extends Cubit<SignUpState> {
     try {
       if (!await FirebaseAuthentication.checkPhoneNumberAlreadyInUse(
         context,
-        userInfoDm,
+        userInfoDm.phoneNumber!,
       )) {
+        emit(SignUpInitial());
         return false;
       }
       if (!await FirebaseAuthentication.checkEmailAlreadyInUse(
         context,
-        userInfoDm,
+        userInfoDm.emailAddress!,
       )) {
+         emit(SignUpInitial());
         return false;
       }
       FirebaseAuthentication.createEmailAndPassword(context, userInfoDm);
-      FirebaseAuthentication.addUserinfo(userInfoDm);
       emit(SignUpSuccess());
       return true;
     } catch (e) {

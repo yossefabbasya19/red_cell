@@ -9,16 +9,17 @@ abstract class FirebaseAuthentication {
   static CollectionReference users = FirebaseFirestore.instance.collection(
     fireStoreUsers,
   );
+  static late UserCredential credential;
 
   static Future<bool> checkEmailAlreadyInUse(
     BuildContext context,
-    UserInfoDm userInfoDm,
+    String email,
   ) async {
     QuerySnapshot getAllUsers = await users.get();
     for (int i = 0; i < getAllUsers.docs.length; i++) {
       Map<String, dynamic> userDataInMap =
           getAllUsers.docs[i].data() as Map<String, dynamic>;
-      if (userInfoDm.emailAddress == userDataInMap[fireStoreUsersUid]) {
+      if (email == userDataInMap[fireStoreUsersUid]) {
         showSnackBar(context, "email is already used");
         return false;
       }
@@ -33,13 +34,13 @@ abstract class FirebaseAuthentication {
 
   static Future<bool> checkPhoneNumberAlreadyInUse(
     BuildContext context,
-    UserInfoDm userInfoDm,
+    String phoneNumber,
   ) async {
     QuerySnapshot getAllUsers = await users.get();
     for (int i = 0; i < getAllUsers.docs.length; i++) {
       Map<String, dynamic> userDataInMap =
           getAllUsers.docs[i].data() as Map<String, dynamic>;
-      if (userInfoDm.phoneNumber == userDataInMap['phoneNumber']) {
+      if (phoneNumber == userDataInMap['phoneNumber']) {
         showSnackBar(context, "phoneNumber is already used");
         return false;
       }
@@ -51,35 +52,28 @@ abstract class FirebaseAuthentication {
     BuildContext context,
     UserInfoDm userInfoDM,
   ) async {
-    try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: userInfoDM.emailAddress!,
-        password: userInfoDM.password!,
-      );
-      final user = FirebaseAuth.instance.currentUser;
-      user?.sendEmailVerification() ?? '';
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        showSnackBar(context, 'The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        showSnackBar(context, 'The account already exists for that email.');
-      }
-    } catch (e) {
-      print(e);
-    }
+    credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: userInfoDM.emailAddress!,
+      password: userInfoDM.password!,
+    );
+    addUserinfo(userInfoDM);
+    final user = FirebaseAuth.instance.currentUser;
+    user?.sendEmailVerification() ?? '';
   }
 
   static Future<void> addUserinfo(UserInfoDm userInfoDm) async {
     try {
       return await users
-          .add({
+          .doc(credential.user!.uid)
+          .set({
             fireStoreUsersUid: userInfoDm.emailAddress,
             fireStoreUsersUserName: userInfoDm.userName,
-            fireStoreUsersPassword: userInfoDm.password,
+            //fireStoreUsersPassword: userInfoDm.password,
             fireStoreUsersPhoneNumber: userInfoDm.phoneNumber,
             fireStoreUsersBirthDate: userInfoDm.birthdayDate,
             fireStoreUsersCountry: userInfoDm.country,
             fireStoreUsersGender: userInfoDm.isFemale,
+            fireStoreUsersProfileImage: '',
             'myDonation': [],
           })
           .then((value) => print("User Added"))

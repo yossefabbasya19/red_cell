@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
@@ -57,7 +58,11 @@ class _LoginState extends State<Login> {
                       if (state is LogInFailure) {
                         showSnackBar(context, state.errMassage);
                       } else if (state is LogInSuccess) {
-                        Navigator.pushNamed(context, MyRoutes.mainLayout,arguments: state.userInfoDm);
+                        Navigator.pushReplacementNamed(
+                          context,
+                          MyRoutes.mainLayout,
+                          //arguments: state.userInfoDm,
+                        );
                         /*if (!state.credential.user!.emailVerified) {
                           showSnackBar(
                             context,
@@ -93,6 +98,7 @@ class _LoginState extends State<Login> {
                     descriptionText: "Don't have an account?",
                     buttonText: "  Sign up",
                     onPressed: () {
+
                       Navigator.pushReplacementNamed(
                         context,
                         MyRoutes.signupFirstScreen,

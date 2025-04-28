@@ -26,6 +26,7 @@ String fireStoreUsers ="users";
 String fireStoreUsersUid = 'uid';
 String fireStoreUsersPhoneNumber = 'phoneNumber';
 String fireStoreUsersUserName = 'userName';
+String fireStoreUsersProfileImage = 'profileImage';
 String fireStoreUsersBirthDate = 'birthdate';
 String fireStoreUsersCountry = 'country';
 String fireStoreUsersGender = 'isFemale';

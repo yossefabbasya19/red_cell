@@ -38,7 +38,7 @@ class AddDonationCubit extends Cubit<AddDonationState> {
         fireStoreDonationRequestsLocationLat: lat,
         fireStoreDonationRequestsLocationLong: long,
         fireStoreDonationRequestsCreateAt: DateTime.now(),
-        fireStoreDonationRequestsUid: FirebaseAuth.instance.currentUser!.email,
+        fireStoreDonationRequestsUid: FirebaseAuth.instance.currentUser!.uid,
         fireStoreDonationRequestsProgressState: false,
       });
       emit(AddDonationSuccess());

@@ -15,61 +15,71 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          MyHeader(title: 'Order List'),
-          SizedBox(height: 24),
-          FutureBuilder(
-            future: RemoteStorage().getDonationRequest(),
-            builder: (context, snapShot) {
-              if (snapShot.hasData) {
-                return Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: RefreshIndicator(
-                      onRefresh: () {
-                        return Future(() {
-                          setState(() {});
-                          print("refresh");
-                        });
-                      },
-                      child: CustomScrollView(
-                        physics: ScrollPhysics(
-                          parent: AlwaysScrollableScrollPhysics(
-                            parent: BouncingScrollPhysics(),
-                          ),
-                        ),
-                        slivers: [
-                          SliverList.separated(
-                            itemCount: snapShot.data!.length,
-                            itemBuilder: (context, index) {
-                              return BloodRequestCard(
-                                donationDetailsDm: snapShot.data![index],
-                                isMyPost:
-                                    snapShot.data![index].uid ==
-                                    FirebaseAuth.instance.currentUser!.email,
-                              );
-                            },
-                            separatorBuilder:
-                                (context, index) => SizedBox(height: 16),
-                          ),
-                        ],
+    return Column(
+      children: [
+        MyHeader(title: 'Order List'),
+        SizedBox(height: 24),
+        FutureBuilder(
+          future: RemoteStorage().getDonationRequest(),
+          builder: (context, snapShot) {
+            if (snapShot.hasData) {
+              return snapShot.data!.isEmpty
+                  ? Center(
+                    child: Text(
+                      "No Feeds Now",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
-                  ),
-                );
-              } else if (snapShot.hasError) {
-                return Center(child: Text("error try again later"));
-              } else {
-                return Center(
-                  child: CircularProgressIndicator(color: ColorsManeger.red),
-                );
-              }
-            },
-          ),
-        ],
-      ),
+                  )
+                  : Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: RefreshIndicator(
+                        color: ColorsManeger.red,
+                        onRefresh: () {
+                          return Future(() {
+                            setState(() {});
+                            print("refresh");
+                          });
+                        },
+                        child: CustomScrollView(
+                          physics: ScrollPhysics(
+                            parent: AlwaysScrollableScrollPhysics(
+                              parent: BouncingScrollPhysics(),
+                            ),
+                          ),
+                          slivers: [
+                            SliverList.separated(
+                              itemCount: snapShot.data!.length,
+                              itemBuilder: (context, index) {
+                                return BloodRequestCard(
+                                  donationDetailsDm: snapShot.data![index],
+                                  isMyPost:
+                                      snapShot.data![index].uid.trim() ==
+                                      FirebaseAuth.instance.currentUser!.uid
+                                          .trim(),
+                                );
+                              },
+                              separatorBuilder:
+                                  (context, index) => SizedBox(height: 16),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+            } else if (snapShot.hasError) {
+              return Center(child: Text("error try again later"));
+            } else {
+              return Center(
+                child: CircularProgressIndicator(color: ColorsManeger.red),
+              );
+            }
+          },
+        ),
+      ],
     );
   }
 }

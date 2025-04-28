@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_cell/core/DM/user_info_DM.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
 import 'package:red_cell/core/constant.dart';
+import 'package:red_cell/core/helper/show_snack_bar.dart';
 import 'package:red_cell/core/helper/text_form_field_validation_function.dart';
 import 'package:red_cell/core/my_routes/my_routes.dart';
 import 'package:red_cell/core/widgets/custom_drob_down_button.dart';
@@ -83,8 +84,9 @@ class _SignInSecondScreenState extends State<SignInSecondScreen> {
                           BlocConsumer<SignUpCubit, SignUpState>(
                             listener: (context, state) {
                               if(state is SignUpFailure){
-                                print(state.errMassage);
+                                showSnackBar(context,state.errMassage);
                               }else if(state is SignUpSuccess){
+                                showSnackBar(context,"registration success ");
                                 Navigator.pushReplacementNamed(context, MyRoutes.login);
                               }
                             },
