@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
 import 'package:red_cell/core/DM/user_info_DM.dart';
+import 'package:red_cell/core/helper/show_snack_bar.dart';
 import 'package:red_cell/views/authentication/signup/firebase_authentication/firebase_authentication.dart';
 
 part 'sign_up_state.dart';
@@ -27,6 +28,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         context,
         userInfoDm.emailAddress!,
       )) {
+        showSnackBar(context, "email is already used");
          emit(SignUpInitial());
         return false;
       }

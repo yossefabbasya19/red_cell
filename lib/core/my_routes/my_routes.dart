@@ -4,6 +4,7 @@ import 'package:red_cell/views/authentication/login/login.dart';
 import 'package:red_cell/views/authentication/signup/signin_second_screen.dart';
 import 'package:red_cell/views/authentication/signup/signup_first_screen.dart';
 import 'package:red_cell/views/donation_details/donation_details.dart';
+import 'package:red_cell/views/forget_password/forget_password.dart';
 import 'package:red_cell/views/main_layout/main_layout.dart';
 import 'package:red_cell/views/donation_details/widgets/receiver_location.dart';
 import 'package:red_cell/views/main_layout/tabs/my_donations/my_donations%20.dart';
@@ -25,6 +26,7 @@ abstract class MyRoutes {
   static const String myDonation = '/myDonation';
   static const String editProfile = '/editProfile';
   static const String myRequests = '/myRequests';
+  static const String forgetPassword = '/forgetPassword';
 
   static Map<String , WidgetBuilder> routes = {
     onBoarding : (_)=>OnBoarding(),
@@ -38,6 +40,7 @@ abstract class MyRoutes {
     requestLocation : (_)=>RequestLocation(),
     myDonation : (_)=>MyDonations(),
     editProfile : (_)=>EditProfile(),
-    myRequests : (_)=>MyRequests()
+    myRequests : (_)=>MyRequests(),
+    forgetPassword : (_)=>ForgetPassword()
   };
 }
