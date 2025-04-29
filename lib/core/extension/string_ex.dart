@@ -1,11 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:red_cell/core/assets_maneger/assets_maneger.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 extension StringEx on String{
-  String get selectImage{
-    if(this == "Blood"){
+  String  selectImage(BuildContext context){
+    if(this == "دم"||this=='blood'){
       return AssetsManeger.requestBlood;
     }
-    else if(this == "Plasma"){
+    else if(this == "بلازما"||this=='Plasma'){
       return AssetsManeger.requestPlasma;
     }
     else{
@@ -14,12 +15,12 @@ extension StringEx on String{
   }
 }
 extension StringExOnBool on bool{
-  String get selectState{
+  String  selectState(BuildContext context){
     if(this == false){
-      return "in progress";
+      return AppLocalizations.of(context)!.in_progress;
     }
     else{
-      return "complete";
+      return AppLocalizations.of(context)!.in_progress;
     }
   }
 }

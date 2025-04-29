@@ -18,13 +18,18 @@ Future<UserCredential> signInWithGoogle(BuildContext context) async {
   UserCredential user = await FirebaseAuth.instance.signInWithCredential(
     credential,
   );
-  FirebaseAuthentication.addUserinfo(
-    UserInfoDm(
-      emailAddress: user.user!.email,
-      userName: user.user!.displayName,
-    ),
-    user,
-  );
+  if (await FirebaseAuthentication.checkEmailAlreadyInUse(
+    context,
+    user.user!.email!,
+  )) {
+    FirebaseAuthentication.addUserinfo(
+      UserInfoDm(
+        emailAddress: user.user!.email,
+        userName: user.user!.displayName,
+      ),
+      user,
+    );
+  }
   Navigator.pushReplacementNamed(context, MyRoutes.mainLayout);
   return user;
 }

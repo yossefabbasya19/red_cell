@@ -39,7 +39,6 @@ class _BloodRequestCardState extends State<BloodRequestCard> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.isMyPost);
     return widget.isMyPost
         ? SizedBox()
         : Card(

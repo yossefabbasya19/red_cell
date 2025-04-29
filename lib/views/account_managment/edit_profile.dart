@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:red_cell/core/DM/user_info_DM.dart';
-import 'package:red_cell/core/assets_maneger/assets_maneger.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
 import 'package:red_cell/core/helper/text_form_field_validation_function.dart';
 import 'package:red_cell/core/remote_storage/get_specific_user.dart';
@@ -42,7 +42,7 @@ class _EditProfileState extends State<EditProfile> {
                         child: Column(
                           children: [
                             CustomStatus(
-                              titleOne: "Edit Profile",
+                              titleOne: AppLocalizations.of(context)!.edit_profile,
                               titleTwo: "",
                             ),
                             SizedBox(
@@ -66,7 +66,7 @@ class _EditProfileState extends State<EditProfile> {
                                 return null;
                               },
                               userInfoDm: userInfoDm,
-                              fieldName: "User Name",
+                              fieldName:  AppLocalizations.of(context)!.user_name,
                               initialValue: userInfoDm.userName??"user name",
                             ),
                             UserEditField(
@@ -78,7 +78,7 @@ class _EditProfileState extends State<EditProfile> {
                                 infoAfterEdit!.emailAddress = value!;
                               },
                               userInfoDm: userInfoDm,
-                              fieldName: "Email",
+                              fieldName:  AppLocalizations.of(context)!.email_address,
                               initialValue: userInfoDm.emailAddress??"email address",
                             ),
                             UserEditField(
@@ -90,7 +90,7 @@ class _EditProfileState extends State<EditProfile> {
                               },
                               validator: phoneValidation,
                               userInfoDm: userInfoDm,
-                              fieldName: "phone Number",
+                              fieldName:  AppLocalizations.of(context)!.phone_number,
                               initialValue: userInfoDm.phoneNumber??"phone Number",
                             ),
                             Padding(
@@ -109,7 +109,7 @@ class _EditProfileState extends State<EditProfile> {
                                   );
                                 },
                                 widget: Text(
-                                  "Save",
+                                  AppLocalizations.of(context)!.done,
                                   style:
                                       Theme.of(context).textTheme.labelMedium,
                                 ),

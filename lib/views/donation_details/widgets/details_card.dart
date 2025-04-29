@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:red_cell/core/DM/donation_details_Dm.dart';
-import 'package:red_cell/core/assets_maneger/assets_maneger.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
-import 'package:red_cell/core/extension/date_ex.dart';
 import 'package:red_cell/core/extension/string_ex.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DetailsCard extends StatelessWidget {
   final DonationDetailsDm donationDetailsDm;
@@ -34,7 +33,7 @@ class DetailsCard extends StatelessWidget {
                   fit: BoxFit.fill,
                   width: MediaQuery.sizeOf(context).width * 0.13,
                   height: MediaQuery.sizeOf(context).height * 0.06,
-                  image: AssetImage(donationDetailsDm.requestType.selectImage),
+                  image: AssetImage(donationDetailsDm.requestType.selectImage(context)),
                 ),
                 SizedBox(width: 8),
                 Column(
@@ -48,7 +47,7 @@ class DetailsCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      donationDetailsDm.progressState.selectState,
+                      donationDetailsDm.progressState.selectState(context),
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
@@ -64,7 +63,7 @@ class DetailsCard extends StatelessWidget {
               children: [
                 SizedBox(width: 8),
                 Text(
-                  "pateint",
+                  AppLocalizations.of(context)!.pateint,
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
                 ),
                 SizedBox(width: 8),
@@ -86,7 +85,7 @@ class DetailsCard extends StatelessWidget {
               children: [
                 SizedBox(width: 8),
                 Text(
-                  "Valid Time",
+                  AppLocalizations.of(context)!.valid_time,
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
                 ),
                 Spacer(),
@@ -101,7 +100,7 @@ class DetailsCard extends StatelessWidget {
               children: [
                 SizedBox(width: 8),
                 Text(
-                  "Phone Number",
+                  AppLocalizations.of(context)!.phone_number,
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
                 ),
                 Spacer(),

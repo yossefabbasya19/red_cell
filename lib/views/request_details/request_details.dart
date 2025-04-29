@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_cell/core/helper/show_snack_bar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:red_cell/core/widgets/custom_eleveted_button.dart';
 import 'package:red_cell/views/request_details/cubit/add_donation_cubit.dart';
 import 'package:red_cell/views/request_details/cubit/add_donation_state.dart';
@@ -15,13 +16,14 @@ class RequestDetails extends StatefulWidget {
 }
 
 class _RequestDetailsState extends State<RequestDetails> {
-  String dropDownValue = 'Request Type';
+
   GlobalKey<FormState> formKey = GlobalKey();
   double? lat;
   double? long;
 
   @override
   Widget build(BuildContext context) {
+    String dropDownValue = AppLocalizations.of(context)!.request_type;
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
@@ -33,7 +35,7 @@ class _RequestDetailsState extends State<RequestDetails> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Request details",
+                  AppLocalizations.of(context)!.request_details,
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 PatientInfoCard(),
@@ -58,7 +60,7 @@ class _RequestDetailsState extends State<RequestDetails> {
                                   color: Colors.white,
                                 ),
                               ):Text(
-                            "done",
+                            AppLocalizations.of(context)!.done,
                             style: Theme.of(context).textTheme.labelMedium,
                           ),
                       onPressed: () {
@@ -72,7 +74,7 @@ class _RequestDetailsState extends State<RequestDetails> {
                               context,
                             ).addDonationRequest();
                           } else {
-                            showSnackBar(context, "select place");
+                            showSnackBar(context, AppLocalizations.of(context)!.select_place);
                           }
                         }
                       },

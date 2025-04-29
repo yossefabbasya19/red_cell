@@ -6,6 +6,7 @@ import 'package:red_cell/core/my_routes/my_routes.dart';
 import 'package:red_cell/views/request_details/cubit/add_donation_cubit.dart';
 import 'package:red_cell/views/request_details/widgets/request_details_Text_field.dart';
 import 'package:red_cell/views/request_details/widgets/request_details_drop_down.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HospitalInfoCard extends StatefulWidget {
   const HospitalInfoCard({super.key});
@@ -15,10 +16,10 @@ class HospitalInfoCard extends StatefulWidget {
 }
 
 class _HospitalInfoCardState extends State<HospitalInfoCard> {
-  String selectedGovernorates = "el-bihera";
 
   @override
   Widget build(BuildContext context) {
+  String selectedGovernorates = getEgyptGovernorates(context)[0];
     return Card(
       elevation: 5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -26,7 +27,10 @@ class _HospitalInfoCardState extends State<HospitalInfoCard> {
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           children: [
-            Text("Hospital Info", style: Theme.of(context).textTheme.bodyLarge),
+            Text(
+              AppLocalizations.of(context)!.hospital_Info,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
             RequestDetailsTextField(
               onSave: (value) {
                 BlocProvider.of<AddDonationCubit>(context).hospitalName =
@@ -38,7 +42,7 @@ class _HospitalInfoCardState extends State<HospitalInfoCard> {
                 }
                 return null;
               },
-              label: "hospital name",
+              label: AppLocalizations.of(context)!.hospital_name,
               keyboardType: TextInputType.text,
             ),
             RequestDetailsTextField(
@@ -52,13 +56,13 @@ class _HospitalInfoCardState extends State<HospitalInfoCard> {
                 BlocProvider.of<AddDonationCubit>(context).hospitalCityAddress =
                     value!;
               },
-              label: "hospital city address",
+              label: AppLocalizations.of(context)!.hospital_city_address,
               keyboardType: TextInputType.text,
             ),
             RequestDetailsDropDown(
               selected: selectedGovernorates,
-              label: "governorates",
-              items: egyptGovernorates,
+              label: AppLocalizations.of(context)!.governorates,
+              items: getEgyptGovernorates(context),
               onChange: (value) {
                 selectedGovernorates = value as String;
                 BlocProvider.of<AddDonationCubit>(context)
@@ -66,14 +70,16 @@ class _HospitalInfoCardState extends State<HospitalInfoCard> {
                 setState(() {});
               },
             ),
-            SizedBox(height: 8,),
+            SizedBox(height: 8),
             Card(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
               child: Row(
                 children: [
-                  SizedBox(width: 16,),
+                  SizedBox(width: 16),
                   Text(
-                    "select place",
+                    AppLocalizations.of(context)!.select_place,
                     style: TextStyle(
                       fontSize: 20,
                       color: ColorsManeger.blue,
@@ -81,9 +87,16 @@ class _HospitalInfoCardState extends State<HospitalInfoCard> {
                     ),
                   ),
                   Spacer(),
-                  IconButton(onPressed: () {
-                    Navigator.pushNamed(context, MyRoutes.requestLocation);
-                  }, icon: Icon(Icons.navigate_next,color: ColorsManeger.blue,size: 30,))
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, MyRoutes.requestLocation);
+                    },
+                    icon: Icon(
+                      Icons.navigate_next,
+                      color: ColorsManeger.blue,
+                      size: 30,
+                    ),
+                  ),
                 ],
               ),
             ),

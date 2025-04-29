@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:red_cell/core/DM/donation_details_Dm.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class PateintName extends StatelessWidget {
   final DonationDetailsDm donationDetailsDm;
   const PateintName({super.key, required this.donationDetailsDm});
@@ -12,7 +12,7 @@ class PateintName extends StatelessWidget {
       children: [
         SizedBox(width: 8),
         Text(
-          "pateint",
+          AppLocalizations.of(context)!.pateint,
           style: TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.w500,
