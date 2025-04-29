@@ -4,7 +4,7 @@ import 'package:red_cell/core/assets_maneger/assets_maneger.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
 import 'package:red_cell/core/helper/show_snack_bar.dart';
 import 'package:red_cell/core/my_routes/my_routes.dart';
-import 'package:red_cell/core/remote_storage/remote_storage.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:red_cell/core/widgets/custom_eleveted_button.dart';
 import 'package:red_cell/views/authentication/signup/firebase_authentication/firebase_authentication.dart';
 import 'package:red_cell/views/authentication/widgets/custom_text_form_field.dart';
@@ -24,7 +24,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Forget Password"), centerTitle: true),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.forget_password), centerTitle: true),
       body: SingleChildScrollView(
         child: Form(
           key: formKey,
@@ -34,7 +34,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: CustomTextFormField(
-                  hintText: "Email",
+                  hintText: AppLocalizations.of(context)!.email_address,
                   isPassword: false,
                   onSaved: (value) {
                     email = value;
@@ -74,7 +74,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                             color: ColorsManeger.white,
                           )
                           : Text(
-                            "Verify Email",
+                            AppLocalizations.of(context)!.verify_email,
                             style: TextStyle(
                               color: ColorsManeger.white,
                               fontSize: 20,

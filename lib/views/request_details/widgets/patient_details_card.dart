@@ -8,6 +8,7 @@ import 'package:red_cell/views/request_details/cubit/add_donation_cubit.dart';
 import 'package:red_cell/views/request_details/widgets/request_details_Text_field.dart';
 import 'package:red_cell/views/request_details/widgets/request_details_date_picker.dart';
 import 'package:red_cell/views/request_details/widgets/request_details_drop_down.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PatientInfoCard extends StatefulWidget {
   const PatientInfoCard({super.key});
@@ -18,10 +19,11 @@ class PatientInfoCard extends StatefulWidget {
 
 class _PatientInfoCardState extends State<PatientInfoCard> {
   String selectType = "A+";
-  String selectDate = "select date";
+  late String selectDate;
 
   @override
   Widget build(BuildContext context) {
+    selectDate = AppLocalizations.of(context)!.select_date;
     return Card(
       elevation: 5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -31,8 +33,12 @@ class _PatientInfoCardState extends State<PatientInfoCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomDropDownButton(
-              label: "Request Type",
-              Items: ["blood", 'Plasma', 'platelets'],
+              label: AppLocalizations.of(context)!.request_type,
+              Items: [
+                AppLocalizations.of(context)!.blood,
+        AppLocalizations.of(context)!.plasma,
+        AppLocalizations.of(context)!.platelets,
+              ],
               onSelect: (value) {
                 BlocProvider.of<AddDonationCubit>(context).requestType = value!;
               },
@@ -40,7 +46,7 @@ class _PatientInfoCardState extends State<PatientInfoCard> {
             SizedBox(height: 8),
             Divider(thickness: 2),
             RequestDetailsTextField(
-              label: "Patient Name",
+              label: AppLocalizations.of(context)!.pateint_name,
               keyboardType: TextInputType.name,
               validation: (value) {
                 if (value!.isEmpty) {
@@ -56,7 +62,7 @@ class _PatientInfoCardState extends State<PatientInfoCard> {
               children: [
                 Expanded(
                   child: RequestDetailsDropDown(
-                    label: "Required type",
+                    label: AppLocalizations.of(context)!.request_type,
                     items: bloodTypes,
                     selected: selectType,
                     onChange: (value) {
@@ -71,11 +77,11 @@ class _PatientInfoCardState extends State<PatientInfoCard> {
                 Expanded(
                   child: RequestDetailsTextField(
                     validation: (value) {
-                      if(value!.isNotEmpty){
+                      if (value!.isNotEmpty) {
                         if (int.tryParse(value)! > 20) {
                           return "maxmum 20 unit";
                         }
-                      }else{
+                      } else {
                         return "requered";
                       }
                       BlocProvider.of<AddDonationCubit>(
@@ -83,7 +89,7 @@ class _PatientInfoCardState extends State<PatientInfoCard> {
                       ).totalUnits = int.parse(value);
                       return null;
                     },
-                    label: "Number of unites",
+                    label: AppLocalizations.of(context)!.number_of_unites,
                     keyboardType: TextInputType.number,
                   ),
                 ),
@@ -111,7 +117,7 @@ class _PatientInfoCardState extends State<PatientInfoCard> {
                           value!;
                     },
                     validation: phoneValidation,
-                    label: "phone Number",
+                    label: AppLocalizations.of(context)!.phone_number,
                     keyboardType: TextInputType.number,
                   ),
                 ),

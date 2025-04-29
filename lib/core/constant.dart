@@ -1,5 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 String kSharedPreferenceBoardingState = "state";
 String regExpValidateEmail =
     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
@@ -49,6 +50,37 @@ final Map<String, List<String>> compatibilityBloodType = {
   'AB+': ['O-', 'O+', 'A-', 'A+', 'B-', 'B+', 'AB-', 'AB+'],
 };
 List<String> bloodTypes = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
+List<String> getEgyptGovernorates(BuildContext context){
+
+    List<String> egyptGovernorates = [
+    AppLocalizations.of(context)!.cairo,
+  AppLocalizations.of(context)!.alexandria,
+  AppLocalizations.of(context)!.giza,
+  AppLocalizations.of(context)!.aswan,
+  AppLocalizations.of(context)!.luxor,
+  AppLocalizations.of(context)!.suez,
+  AppLocalizations.of(context)!.dakahlia,
+  AppLocalizations.of(context)!.sharqia,
+  AppLocalizations.of(context)!.minya,
+  AppLocalizations.of(context)!.qena,
+  AppLocalizations.of(context)!.beheira,
+  AppLocalizations.of(context)!.sohag,
+  AppLocalizations.of(context)!.faiyum,
+  AppLocalizations.of(context)!.ismailia,
+  AppLocalizations.of(context)!.portSaid,
+  AppLocalizations.of(context)!.damietta,
+  AppLocalizations.of(context)!.asyut,
+      AppLocalizations.of(context)!.kafrElSheikh,
+      AppLocalizations.of(context)!.redSea,
+  AppLocalizations.of(context)!.northSinai,
+  AppLocalizations.of(context)!.southSinai,
+  AppLocalizations.of(context)!.newValley,
+  AppLocalizations.of(context)!.matrouh,
+  AppLocalizations.of(context)!.beniSuef,
+  AppLocalizations.of(context)!.monufia,
+  ];
+    return egyptGovernorates;
+}
 List<String> egyptGovernorates = [
   'Cairo',
   'Alexandria',

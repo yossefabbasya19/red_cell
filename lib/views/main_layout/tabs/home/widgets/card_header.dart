@@ -4,6 +4,7 @@ import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
 import 'package:red_cell/core/extension/string_ex.dart';
 import 'package:red_cell/core/helper/delete_post_from_my_donation.dart';
 import 'package:red_cell/core/my_routes/my_routes.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CardHeader extends StatelessWidget {
   final DonationDetailsDm donationDetailsDm;
@@ -21,7 +22,7 @@ class CardHeader extends StatelessWidget {
           width: MediaQuery.sizeOf(context).width * 0.13,
           height: MediaQuery.sizeOf(context).height * 0.06,
           image: AssetImage(
-            donationDetailsDm.requestType.selectImage,
+            donationDetailsDm.requestType.selectImage(context),
           ),
         ),
         SizedBox(width: 10),
@@ -29,14 +30,14 @@ class CardHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Request ${donationDetailsDm.requestType}",
+              "${AppLocalizations.of(context)!.request} ${donationDetailsDm.requestType}",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
               ),
             ),
             Text(
-              donationDetailsDm.progressState.selectState,
+              donationDetailsDm.progressState.selectState(context),
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
@@ -72,7 +73,7 @@ class CardHeader extends StatelessWidget {
               );
             }
           },
-          child: Text('Donate'),
+          child: Text(AppLocalizations.of(context)!.donate),
         ),
       ],
     );

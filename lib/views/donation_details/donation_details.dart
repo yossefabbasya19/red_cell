@@ -1,14 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_cell/core/DM/donation_details_Dm.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
 import 'package:red_cell/core/constant.dart';
 import 'package:red_cell/core/my_routes/my_routes.dart';
 import 'package:red_cell/core/remote_storage/get_specific_user_field.dart';
 import 'package:red_cell/core/widgets/custom_eleveted_button.dart';
-import 'package:red_cell/views/authentication/login/cubit/log_in/log_in_cubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:red_cell/views/donation_details/widgets/blood_type_gridview.dart';
 import 'package:red_cell/views/donation_details/widgets/details_card.dart';
 import 'package:red_cell/views/donation_details/widgets/hospital_info.dart';
@@ -40,7 +39,7 @@ class _DonationDetailsState extends State<DonationDetails> {
     donationDetailsDm =
         ModalRoute.of(context)!.settings.arguments as DonationDetailsDm;
     return Scaffold(
-      appBar: AppBar(title: Text("Donation details")),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.donation_details)),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -73,7 +72,7 @@ class _DonationDetailsState extends State<DonationDetails> {
                   Navigator.pushNamed(context, MyRoutes.myDonation);
                 },
                 widget: Text(
-                  "donate",
+                  AppLocalizations.of(context)!.donate,
                   style: TextStyle(
                     color: ColorsManeger.white,
                     fontSize: 20,

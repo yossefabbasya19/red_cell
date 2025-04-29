@@ -10,6 +10,7 @@ import 'package:red_cell/views/authentication/widgets/custom_status.dart';
 import 'package:red_cell/views/authentication/widgets/custom_text_button.dart';
 import 'package:red_cell/views/authentication/widgets/custom_text_form_field.dart';
 import 'package:red_cell/views/authentication/widgets/social_sign.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -34,19 +35,22 @@ class _LoginState extends State<Login> {
               key: formKey,
               child: Column(
                 children: [
-                  CustomStatus(titleOne: "Log in", titleTwo: ""),
+                  CustomStatus(
+                    titleOne: AppLocalizations.of(context)!.login,
+                    titleTwo: "",
+                  ),
                   SizedBox(height: 24),
                   SocialSign(),
                   CustomTextFormField(
                     myKeyboardType: TextInputType.emailAddress,
-                    hintText: "Email",
+                    hintText: AppLocalizations.of(context)!.email_address,
                     isPassword: false,
                     onSaved: (value) {
                       emailAddress = value!;
                     },
                   ),
                   CustomTextFormField(
-                    hintText: "password",
+                    hintText: AppLocalizations.of(context)!.password,
                     isPassword: true,
                     onSaved: (value) {
                       password = value!;
@@ -88,7 +92,7 @@ class _LoginState extends State<Login> {
                                   color: ColorsManeger.white,
                                 )
                                 : Text(
-                                  "Confirm",
+                              AppLocalizations.of(context)!.continue_txt,
                                   style:
                                       Theme.of(context).textTheme.labelMedium,
                                 ),
@@ -96,8 +100,8 @@ class _LoginState extends State<Login> {
                     },
                   ),
                   CustomTextButtonWithText(
-                    descriptionText: "Don't have an account?",
-                    buttonText: "  Sign up",
+                    descriptionText: AppLocalizations.of(context)!.do_not_have_an_account,
+                    buttonText: AppLocalizations.of(context)!.sign_up,
                     onPressed: () {
                       Navigator.pushReplacementNamed(
                         context,

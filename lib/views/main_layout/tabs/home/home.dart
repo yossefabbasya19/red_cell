@@ -4,7 +4,7 @@ import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
 import 'package:red_cell/core/remote_storage/remote_storage.dart';
 import 'package:red_cell/core/widgets/My_header.dart';
 import 'package:red_cell/views/main_layout/tabs/home/widgets/blood_request_card.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class HomeTab extends StatefulWidget {
   HomeTab({super.key});
 
@@ -17,8 +17,8 @@ class _HomeTabState extends State<HomeTab> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        MyHeader(title: 'Order List'),
-        SizedBox(height: 24),
+        MyHeader(title: AppLocalizations.of(context)!.order_list),
+        //SizedBox(height: 24),
         FutureBuilder(
           future: RemoteStorage().getDonationRequest(),
           builder: (context, snapShot) {
@@ -26,7 +26,7 @@ class _HomeTabState extends State<HomeTab> {
               return snapShot.data!.isEmpty
                   ? Center(
                     child: Text(
-                      "No Feeds Now",
+                      AppLocalizations.of(context)!.no_feeds_now,
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
@@ -35,7 +35,7 @@ class _HomeTabState extends State<HomeTab> {
                   )
                   : Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: RefreshIndicator(
                         color: ColorsManeger.red,
                         onRefresh: () {

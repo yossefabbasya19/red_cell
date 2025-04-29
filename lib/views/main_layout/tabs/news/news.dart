@@ -3,6 +3,7 @@ import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
 import 'package:red_cell/core/news_data/get_news.dart';
 import 'package:red_cell/core/widgets/My_header.dart';
 import 'package:red_cell/views/main_layout/tabs/news/widgets/news_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NewsTab extends StatefulWidget {
   const NewsTab({super.key});
@@ -17,7 +18,7 @@ class _NewsTabState extends State<NewsTab> {
     return Scaffold(
       body: Column(
         children: [
-          MyHeader(title: 'News'),
+          MyHeader(title: AppLocalizations.of(context)!.news),
           FutureBuilder(
             future: GetNews().getNews('health'),
             builder: (context, snapshot) {

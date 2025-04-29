@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:red_cell/core/DM/donation_details_Dm.dart';
 import 'package:red_cell/core/assets_maneger/assets_maneger.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RemainingUnitCard extends StatelessWidget {
   final DonationDetailsDm donationDetailsDm;
@@ -31,7 +32,7 @@ class RemainingUnitCard extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   Text(
-                    "Remaining Units",
+                    AppLocalizations.of(context)!.remaining_units,
                     style: Theme.of(
                       context,
                     ).textTheme.bodyLarge!.copyWith(fontSize: 16),
@@ -44,7 +45,7 @@ class RemainingUnitCard extends StatelessWidget {
 
               children: [
                 Text(
-                  "total units",
+                  AppLocalizations.of(context)!.total_units,
                   style: Theme.of(
                     context,
                   ).textTheme.bodyLarge!.copyWith(fontSize: 14),

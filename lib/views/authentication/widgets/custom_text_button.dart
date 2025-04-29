@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
 import 'package:red_cell/core/my_routes/my_routes.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({super.key});
 
@@ -16,7 +16,7 @@ class CustomTextButton extends StatelessWidget {
           Navigator.pushNamed(context, MyRoutes.forgetPassword);
         },
         child: Text(
-          "forget password",
+          AppLocalizations.of(context)!.forget_password,
           style: TextStyle(
             color: ColorsManeger.red,
             fontSize: 16,

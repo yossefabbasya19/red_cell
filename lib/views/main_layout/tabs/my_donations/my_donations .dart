@@ -1,11 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
 import 'package:red_cell/core/remote_storage/get_specific_post.dart';
 import 'package:red_cell/core/remote_storage/get_specific_user_field.dart';
 import 'package:red_cell/core/widgets/My_header.dart';
-import 'package:red_cell/views/authentication/login/cubit/log_in/log_in_cubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:red_cell/views/main_layout/tabs/home/widgets/blood_request_card.dart';
 
 class MyDonations extends StatefulWidget {
@@ -29,7 +28,7 @@ class _MyDonationsState extends State<MyDonations> {
     return Scaffold(
       body: Column(
         children: [
-          MyHeader(title: 'My donate'),
+          MyHeader(title: AppLocalizations.of(context)!.my_donation),
           SizedBox(height: 24),
           FutureBuilder(
             future: getSpecificUserField(userID!),
@@ -38,7 +37,7 @@ class _MyDonationsState extends State<MyDonations> {
                 return snapShot.data!.isEmpty
                     ? Center(
                       child: Text(
-                        "no Donation",
+                        AppLocalizations.of(context)!.no_donation,
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
