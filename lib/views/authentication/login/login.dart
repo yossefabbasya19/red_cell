@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
@@ -8,6 +7,7 @@ import 'package:red_cell/core/widgets/custom_eleveted_button.dart';
 import 'package:red_cell/core/widgets/custom_text_button_with_text.dart';
 import 'package:red_cell/views/authentication/login/cubit/log_in/log_in_cubit.dart';
 import 'package:red_cell/views/authentication/widgets/custom_status.dart';
+import 'package:red_cell/views/authentication/widgets/custom_text_button.dart';
 import 'package:red_cell/views/authentication/widgets/custom_text_form_field.dart';
 import 'package:red_cell/views/authentication/widgets/social_sign.dart';
 
@@ -52,7 +52,8 @@ class _LoginState extends State<Login> {
                       password = value!;
                     },
                   ),
-                  SizedBox(height: 24),
+                  CustomTextButton(),
+                  SizedBox(height: 16),
                   BlocConsumer<LogInCubit, LogInState>(
                     listener: (context, state) {
                       if (state is LogInFailure) {
@@ -98,7 +99,6 @@ class _LoginState extends State<Login> {
                     descriptionText: "Don't have an account?",
                     buttonText: "  Sign up",
                     onPressed: () {
-
                       Navigator.pushReplacementNamed(
                         context,
                         MyRoutes.signupFirstScreen,

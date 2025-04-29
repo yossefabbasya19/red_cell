@@ -67,7 +67,7 @@ class _EditProfileState extends State<EditProfile> {
                               },
                               userInfoDm: userInfoDm,
                               fieldName: "User Name",
-                              initialValue: userInfoDm.userName!,
+                              initialValue: userInfoDm.userName??"user name",
                             ),
                             UserEditField(
                               onChange: (p0) {
@@ -79,7 +79,7 @@ class _EditProfileState extends State<EditProfile> {
                               },
                               userInfoDm: userInfoDm,
                               fieldName: "Email",
-                              initialValue: userInfoDm.emailAddress!,
+                              initialValue: userInfoDm.emailAddress??"email address",
                             ),
                             UserEditField(
                               onChange: (p0) {
@@ -91,7 +91,7 @@ class _EditProfileState extends State<EditProfile> {
                               validator: phoneValidation,
                               userInfoDm: userInfoDm,
                               fieldName: "phone Number",
-                              initialValue: userInfoDm.phoneNumber!,
+                              initialValue: userInfoDm.phoneNumber??"phone Number",
                             ),
                             Padding(
                               padding: EdgeInsets.only(
@@ -122,7 +122,7 @@ class _EditProfileState extends State<EditProfile> {
                   ),
             );
           } else if (snapShot.hasError) {
-            return Text(snapShot.error.toString());
+            return SafeArea(child: Text(snapShot.error.toString()));
           } else {
             return Center(
               child: CircularProgressIndicator(color: ColorsManeger.red),

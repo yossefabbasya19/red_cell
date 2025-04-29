@@ -20,7 +20,6 @@ abstract class FirebaseAuthentication {
       Map<String, dynamic> userDataInMap =
           getAllUsers.docs[i].data() as Map<String, dynamic>;
       if (email == userDataInMap[fireStoreUsersUid]) {
-        showSnackBar(context, "email is already used");
         return false;
       }
     }
@@ -56,15 +55,18 @@ abstract class FirebaseAuthentication {
       email: userInfoDM.emailAddress!,
       password: userInfoDM.password!,
     );
-    addUserinfo(userInfoDM);
+    addUserinfo(userInfoDM,credential);
     final user = FirebaseAuth.instance.currentUser;
     user?.sendEmailVerification() ?? '';
   }
 
-  static Future<void> addUserinfo(UserInfoDm userInfoDm) async {
+  static Future<void> addUserinfo(
+    UserInfoDm userInfoDm,
+    UserCredential userCredential,
+  ) async {
     try {
       return await users
-          .doc(credential.user!.uid)
+          .doc(userCredential.user!.uid)
           .set({
             fireStoreUsersUid: userInfoDm.emailAddress,
             fireStoreUsersUserName: userInfoDm.userName,

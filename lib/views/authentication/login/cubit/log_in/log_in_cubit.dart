@@ -7,25 +7,11 @@ part 'log_in_state.dart';
 
 class LogInCubit extends Cubit<LogInState> {
   LogInCubit() : super(LogInInitial());
-  /*CollectionReference users = FirebaseFirestore.instance.collection(
-    fireStoreUsers,
-  );*/
-  //UserInfoDm userInfoDm = UserInfoDm();
-
   void logIn(BuildContext context, String emailAddress, String password) async {
     emit(LogInLoading());
     try {
        await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: emailAddress, password: password);
-      //QuerySnapshot getUsers = await users.get();
-       /*List<UserInfoDm> allUsers = await getAllUsers();
-      for (int i = 0; i < allUsers.length; i++) {
-        Map<String, dynamic> userInMap =
-            getUsers.docs[i].data() as Map<String, dynamic>;
-        if (allUsers[i].emailAddress == emailAddress) {
-          userInfoDm = allUsers[i];
-        }
-      }*/
       emit(LogInSuccess(/*userInfoDm: userInfoDm*/));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {

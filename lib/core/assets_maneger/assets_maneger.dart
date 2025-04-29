@@ -16,4 +16,5 @@ abstract class AssetsManeger {
   static String donationDetails = '$base/donation_details.png';
   static String notLoading = '$base/not_loading.png';
   static String profileImage = '$base/profile_image.png';
+  static String forgetPassword = '$base/forget_password.jpg';
 }
