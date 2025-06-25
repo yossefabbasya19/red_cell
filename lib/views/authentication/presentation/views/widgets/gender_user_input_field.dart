@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
-import 'package:red_cell/views/authentication/signup/cubit/select_gender_cubit/select_gender_cubit.dart';
-import 'package:red_cell/views/authentication/signup/cubit/select_gender_cubit/select_gender_state.dart';
+import 'package:red_cell/views/authentication/presentation/view_model/auth_view_model_cubit.dart';
 
 class GenderUserInputField extends StatefulWidget {
   const GenderUserInputField({super.key});
@@ -23,9 +22,9 @@ class _GenderUserInputFieldState extends State<GenderUserInputField> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: BlocBuilder<SelectGenderCubit, SelectGenderState>(
+      child: BlocBuilder<AuthViewModelCubit, AuthViewModelState>(
         builder: (context, state) {
-          cc = BlocProvider.of<SelectGenderCubit>(context).isFemale;
+          cc = BlocProvider.of<AuthViewModelCubit>(context).isFemale;
           return Container(
             padding: EdgeInsets.only(top: 24),
             child: Column(
@@ -60,7 +59,7 @@ class _GenderUserInputFieldState extends State<GenderUserInputField> {
                           elevation: WidgetStatePropertyAll(0),
                         ),
                         onPressed: () {
-                          BlocProvider.of<SelectGenderCubit>(
+                          BlocProvider.of<AuthViewModelCubit>(
                             context,
                           ).switchGender();
                         },
@@ -95,7 +94,7 @@ class _GenderUserInputFieldState extends State<GenderUserInputField> {
                           elevation: WidgetStatePropertyAll(0),
                         ),
                         onPressed: () {
-                          BlocProvider.of<SelectGenderCubit>(
+                          BlocProvider.of<AuthViewModelCubit>(
                             context,
                           ).switchGender();
                         },

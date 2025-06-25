@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:red_cell/views/account_managment/edit_profile.dart';
-import 'package:red_cell/views/authentication/login/login.dart';
-import 'package:red_cell/views/authentication/signup/signin_second_screen.dart';
-import 'package:red_cell/views/authentication/signup/signup_first_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:red_cell/views/account_managment/presentation/views/edit_profile.dart';
+import 'package:red_cell/views/authentication/presentation/views/login/login.dart';
+import 'package:red_cell/views/authentication/presentation/views/signup/signup_second_screen.dart';
+import 'package:red_cell/views/authentication/presentation/views/signup/signup_first_screen.dart';
+import 'package:red_cell/views/chat/chat.dart';
+import 'package:red_cell/views/chat/cubit/chat_cubit.dart';
 import 'package:red_cell/views/donation_details/donation_details.dart';
 import 'package:red_cell/views/forget_password/forget_password.dart';
 import 'package:red_cell/views/main_layout/main_layout.dart';
@@ -27,20 +30,26 @@ abstract class MyRoutes {
   static const String editProfile = '/editProfile';
   static const String myRequests = '/myRequests';
   static const String forgetPassword = '/forgetPassword';
+  static const String chat = '/chat';
 
-  static Map<String , WidgetBuilder> routes = {
-    onBoarding : (_)=>OnBoarding(),
-    login : (_)=>Login(),
-    signupFirstScreen : (_)=>Signup(),
-    signupSecondScreen : (_)=>SignInSecondScreen(),
-    mainLayout : (_)=>MainLayout(),
-    donationDetails : (_)=>DonationDetails(),
-    mapLocation : (_)=>MapLocation(),
-    requestDetails : (_)=>RequestDetails(),
-    requestLocation : (_)=>RequestLocation(),
-    myDonation : (_)=>MyDonations(),
-    editProfile : (_)=>EditProfile(),
-    myRequests : (_)=>MyRequests(),
-    forgetPassword : (_)=>ForgetPassword()
+  static Map<String, WidgetBuilder> routes = {
+    chat: (_) =>
+        BlocProvider(
+          create: (context) => ChatCubit(),
+          child: Chat(),
+        ),
+    onBoarding: (_) => OnBoarding(),
+    login: (_) => Login(),
+    signupFirstScreen: (_) => Signup(),
+    signupSecondScreen: (_) => SignInSecondScreen(),
+    mainLayout: (_) => MainLayout(),
+    donationDetails: (_) => DonationDetails(),
+    mapLocation: (_) => MapLocation(),
+    requestDetails: (_) => RequestDetails(),
+    requestLocation: (_) => RequestLocation(),
+    myDonation: (_) => MyDonations(),
+    editProfile: (_) => EditProfile(),
+    myRequests: (_) => MyRequests(),
+    forgetPassword: (_) => ForgetPassword()
   };
 }

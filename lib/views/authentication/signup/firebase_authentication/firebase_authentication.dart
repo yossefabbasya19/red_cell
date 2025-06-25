@@ -47,17 +47,21 @@ abstract class FirebaseAuthentication {
     return true;
   }
 
-  static void createEmailAndPassword(
-    BuildContext context,
-    UserInfoDm userInfoDM,
-  ) async {
+  static Future<void> createEmailAndPassword(UserInfoDm userInfoDM) async {
     credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: userInfoDM.emailAddress!,
       password: userInfoDM.password!,
     );
-    addUserinfo(userInfoDM,credential);
+    addUserinfo(userInfoDM, credential);
     final user = FirebaseAuth.instance.currentUser;
-    user?.sendEmailVerification() ?? '';
+    await user?.sendEmailVerification();
+  }
+
+  static Future<void> login(String emailAddress, String password) async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailAddress,
+      password: password,
+    );
   }
 
   static Future<void> addUserinfo(

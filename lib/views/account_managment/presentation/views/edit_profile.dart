@@ -7,9 +7,9 @@ import 'package:red_cell/core/helper/text_form_field_validation_function.dart';
 import 'package:red_cell/core/remote_storage/get_specific_user.dart';
 import 'package:red_cell/core/widgets/custom_eleveted_button.dart';
 import 'package:red_cell/views/account_managment/functions/edit_user_info.dart';
-import 'package:red_cell/views/account_managment/widgets/image_picker.dart';
-import 'package:red_cell/views/account_managment/widgets/user_edit_field.dart';
-import 'package:red_cell/views/authentication/widgets/custom_status.dart';
+import 'package:red_cell/views/account_managment/presentation/views/widgets/image_picker.dart';
+import 'package:red_cell/views/account_managment/presentation/views/widgets/user_edit_field.dart';
+import 'package:red_cell/views/authentication/presentation/views/widgets/custom_status.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
