@@ -4,9 +4,9 @@ import 'package:red_cell/core/helper/text_form_field_validation_function.dart';
 import 'package:red_cell/core/my_routes/my_routes.dart';
 import 'package:red_cell/core/widgets/custom_eleveted_button.dart';
 import 'package:red_cell/core/widgets/custom_text_button_with_text.dart';
-import 'package:red_cell/views/authentication/widgets/custom_status.dart';
-import 'package:red_cell/views/authentication/widgets/custom_text_form_field.dart';
-import 'package:red_cell/views/authentication/widgets/social_sign.dart';
+import 'package:red_cell/views/authentication/presentation/views/widgets/custom_status.dart';
+import 'package:red_cell/views/authentication/presentation/views/widgets/custom_text_form_field.dart';
+import 'package:red_cell/views/authentication/presentation/views/widgets/social_sign.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class Signup extends StatefulWidget {
   const Signup({super.key});

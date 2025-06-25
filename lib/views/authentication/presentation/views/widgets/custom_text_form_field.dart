@@ -6,7 +6,10 @@ class CustomTextFormField extends StatefulWidget {
   final bool isPassword;
   final void Function(String?)? onSaved;
   final String? Function(String?)? validation;
+  final void Function(String)? onFieldSubmitted;
   final TextInputType? myKeyboardType;
+  final TextEditingController? controller;
+  final Widget? prefixIcon;
 
   const CustomTextFormField({
     super.key,
@@ -14,7 +17,7 @@ class CustomTextFormField extends StatefulWidget {
     this.myKeyboardType,
     this.onSaved,
     required this.isPassword,
-    this.validation,
+    this.validation, this.onFieldSubmitted,  this.controller, this.prefixIcon,
   });
 
   @override
@@ -33,6 +36,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         Text(widget.hintText, style: Theme.of(context).textTheme.titleSmall),
         SizedBox(height: 8),
         TextFormField(
+          controller: widget.controller,
+          onFieldSubmitted:widget.onFieldSubmitted ,
           style: TextStyle(
             fontWeight: FontWeight.w500,
             color: ColorsManeger.black,
@@ -43,6 +48,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           onSaved: widget.onSaved,
           obscureText: isObscureText,
           decoration: InputDecoration(
+            prefixIcon:widget.prefixIcon ,
             hintText: widget.hintText,
             suffixIcon:
                 widget.isPassword

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
-import 'package:red_cell/core/extension/date_ex.dart';
 
 class RequestDetailsDatePicker extends StatefulWidget {
   final void Function(DateTime?) onSelectDate;
@@ -34,7 +33,7 @@ class _RequestDetailsDatePickerState extends State<RequestDetailsDatePicker> {
               await showDatePicker(
                 context: context,
                 firstDate: DateTime.now(),
-                lastDate: DateTime.now().lastDate
+                lastDate: DateTime(DateTime.now().year+1)
               ).then(widget.onSelectDate);
             },
             child: Text(

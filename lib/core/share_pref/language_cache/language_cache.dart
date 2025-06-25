@@ -1,14 +1,27 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageCache {
-  Future<bool?>  getLanguageCache() async {
-    String languageKey = "language_value";
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    return sharedPreferences.getBool(languageKey);
+  LanguageCache._();
+
+  static LanguageCache instance = LanguageCache._();
+
+  factory LanguageCache() {
+    return instance;
   }
-  void setLanguageCache (bool value)async {
+
+  late SharedPreferences sharedPreferences;
+
+  Future<void> init() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+  }
+
+  bool getLanguageCache() {
     String languageKey = "language_value";
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-     sharedPreferences.setBool(languageKey,value);
+    return sharedPreferences.getBool(languageKey) ?? false;
+  }
+
+   Future<void> setLanguageCache(bool value) async {
+    String languageKey = "language_value";
+    await sharedPreferences.setBool(languageKey, value);
   }
 }

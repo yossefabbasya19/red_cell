@@ -1,4 +1,5 @@
 import 'package:date_format/date_format.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,13 +11,13 @@ import 'package:red_cell/core/helper/text_form_field_validation_function.dart';
 import 'package:red_cell/core/my_routes/my_routes.dart';
 import 'package:red_cell/core/widgets/custom_drob_down_button.dart';
 import 'package:red_cell/core/widgets/custom_eleveted_button.dart';
-import 'package:red_cell/views/authentication/signup/cubit/select_gender_cubit/select_gender_cubit.dart';
-import 'package:red_cell/views/authentication/signup/cubit/sign_up/sign_up_cubit.dart';
+import 'package:red_cell/views/authentication/data/repo/auth_repo_imple.dart';
+import 'package:red_cell/views/authentication/presentation/view_model/auth_view_model_cubit.dart';
 import 'package:red_cell/views/authentication/signup/sign_up_buttom_function/sign_up_button_function.dart';
-import 'package:red_cell/views/authentication/widgets/custom_status.dart';
-import 'package:red_cell/views/authentication/widgets/custom_text_form_field.dart';
-import 'package:red_cell/views/authentication/widgets/date_time_picker.dart';
-import 'package:red_cell/views/authentication/widgets/gender_user_input_field.dart';
+import 'package:red_cell/views/authentication/presentation/views/widgets/custom_status.dart';
+import 'package:red_cell/views/authentication/presentation/views/widgets/custom_text_form_field.dart';
+import 'package:red_cell/views/authentication/presentation/views/widgets/date_time_picker.dart';
+import 'package:red_cell/views/authentication/presentation/views/widgets/gender_user_input_field.dart';
 
 class SignInSecondScreen extends StatefulWidget {
   const SignInSecondScreen({super.key});
@@ -36,13 +37,13 @@ class _SignInSecondScreenState extends State<SignInSecondScreen> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: BlocProvider(
-            create: (context) => SignUpCubit(),
+            create: (context) => AuthViewModelCubit(AuthRepoImple()),
             child: Padding(
               padding: EdgeInsets.only(top: 16, right: 16, left: 16),
               child: Form(
                 key: formKey,
                 child: BlocProvider(
-                  create: (context) => SelectGenderCubit(),
+                  create: (context) => AuthViewModelCubit(AuthRepoImple()),
                   child: Builder(
                     builder: (context) {
                       return Column(
@@ -81,13 +82,16 @@ class _SignInSecondScreenState extends State<SignInSecondScreen> {
                             },
                           ),
                           SizedBox(height: 24),
-                          BlocConsumer<SignUpCubit, SignUpState>(
+                          BlocConsumer<AuthViewModelCubit, AuthViewModelState>(
                             listener: (context, state) {
-                              if(state is SignUpFailure){
-                                showSnackBar(context,state.errMassage);
-                              }else if(state is SignUpSuccess){
-                                showSnackBar(context,"registration success ");
-                                Navigator.pushReplacementNamed(context, MyRoutes.login);
+                              if (state is SignUpFailure) {
+                                showSnackBar(context, state.errMassage);
+                              } else if (state is SignUpSuccess) {
+                                showSnackBar(context, "registration success ");
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  MyRoutes.mainLayout,
+                                );
                               }
                             },
                             builder: (context, state) {
@@ -104,9 +108,9 @@ class _SignInSecondScreenState extends State<SignInSecondScreen> {
                                                 context,
                                               ).textTheme.labelMedium,
                                         ),
-                                onPressed:(){
+                                onPressed: () {
                                   signUp(context, userInfoDm, formKey);
-                                } ,
+                                },
                               );
                             },
                           ),

@@ -1,13 +1,27 @@
 import 'package:red_cell/core/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class SharePreference {
-  static void setOnBoardingStates(bool state) async {
-    SharedPreferences preference =  await SharedPreferences.getInstance();
-    preference.setBool(kSharedPreferenceBoardingState,state);
+class SharePreference {
+  static SharePreference? instance;
+
+  SharePreference._();
+
+  factory SharePreference() {
+    instance ??= SharePreference._();
+    return instance!;
   }
+
+  static SharedPreferences? preference;
+
+  Future<void> init() async {
+    preference = await SharedPreferences.getInstance();
+  }
+
+  static void setOnBoardingStates(bool state) async {
+    await preference!.setBool(kSharedPreferenceBoardingState, state);
+  }
+
   static Future<bool> getOnBoardingStates() async {
-    SharedPreferences preference =  await SharedPreferences.getInstance();
-    return preference.getBool(kSharedPreferenceBoardingState)??false;
+    return preference!.getBool(kSharedPreferenceBoardingState) ?? false;
   }
 }

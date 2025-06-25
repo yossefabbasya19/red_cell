@@ -32,7 +32,7 @@ class CardHeader extends StatelessWidget {
             Text(
               "${AppLocalizations.of(context)!.request} ${donationDetailsDm.requestType}",
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 16,
                 fontWeight: FontWeight.w700,
               ),
             ),

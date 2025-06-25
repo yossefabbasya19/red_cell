@@ -19,11 +19,11 @@ class PatientInfoCard extends StatefulWidget {
 
 class _PatientInfoCardState extends State<PatientInfoCard> {
   String selectType = "A+";
-  late String selectDate;
+   String? selectDate;
 
   @override
   Widget build(BuildContext context) {
-    selectDate = AppLocalizations.of(context)!.select_date;
+
     return Card(
       elevation: 5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -99,7 +99,7 @@ class _PatientInfoCardState extends State<PatientInfoCard> {
               children: [
                 Expanded(
                   child: RequestDetailsDatePicker(
-                    selectDate: selectDate,
+                    selectDate: selectDate?? AppLocalizations.of(context)!.select_date,
                     onSelectDate: (value) {
                       selectDate = DateFormat("Md").format(value!);
                       BlocProvider.of<AddDonationCubit>(

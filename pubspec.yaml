@@ -57,6 +57,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   provider: ^6.1.5
+  google_generative_ai: ^0.2.0
+  flutter_gemini: ^3.0.0
+  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_test:
