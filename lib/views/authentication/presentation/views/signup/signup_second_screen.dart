@@ -13,7 +13,6 @@ import 'package:red_cell/core/widgets/custom_drob_down_button.dart';
 import 'package:red_cell/core/widgets/custom_eleveted_button.dart';
 import 'package:red_cell/views/authentication/data/repo/auth_repo_imple.dart';
 import 'package:red_cell/views/authentication/presentation/view_model/auth_view_model_cubit.dart';
-import 'package:red_cell/views/authentication/signup/sign_up_buttom_function/sign_up_button_function.dart';
 import 'package:red_cell/views/authentication/presentation/views/widgets/custom_status.dart';
 import 'package:red_cell/views/authentication/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:red_cell/views/authentication/presentation/views/widgets/date_time_picker.dart';
@@ -109,7 +108,20 @@ class _SignInSecondScreenState extends State<SignInSecondScreen> {
                                               ).textTheme.labelMedium,
                                         ),
                                 onPressed: () {
-                                  signUp(context, userInfoDm, formKey);
+                                  if (formKey.currentState!.validate()) {
+                                    formKey.currentState!.save();
+                                    userInfoDm.country =
+                                        userInfoDm.country ?? "cairo";
+                                    userInfoDm.birthdayDate =
+                                        userInfoDm.birthdayDate ?? "1960-1-1";
+                                    userInfoDm.isFemale =
+                                        !BlocProvider.of<AuthViewModelCubit>(
+                                          context,
+                                        ).isFemale;
+                                    BlocProvider.of<AuthViewModelCubit>(
+                                      context,
+                                    ).createAccount(userInfoDm);
+                                  }
                                 },
                               );
                             },

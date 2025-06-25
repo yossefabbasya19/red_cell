@@ -68,14 +68,7 @@ class _LoginState extends State<Login> {
                           MyRoutes.mainLayout,
                           //arguments: state.userInfoDm,
                         );
-                        /*if (!state.credential.user!.emailVerified) {
-                          showSnackBar(
-                            context,
-                            "check your email and Verify Email ",
-                          );
-                        } else {
-                          Navigator.pushNamed(context, MyRoutes.mainLayout);
-                        }*/
+
                       }
                     },
                     builder: (context, state) {

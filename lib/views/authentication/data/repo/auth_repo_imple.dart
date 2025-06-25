@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:red_cell/core/DM/user_info_DM.dart';
 import 'package:red_cell/core/failure/failure.dart';
 import 'package:red_cell/views/authentication/data/repo/auth_repo.dart';
-import 'package:red_cell/views/authentication/signup/firebase_authentication/firebase_authentication.dart';
+import 'package:red_cell/core/remote_storage/firebase_authentication.dart';
 
 class AuthRepoImple extends AuthRepo {
   @override

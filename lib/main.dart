@@ -5,6 +5,7 @@ import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 import 'package:red_cell/bloc_observer.dart';
+import 'package:red_cell/core/di/di.dart';
 import 'package:red_cell/core/provider/config_provider/config_provider.dart';
 import 'package:red_cell/core/share_pref/language_cache/language_cache.dart';
 import 'package:red_cell/core/share_pref/share_preference.dart';
@@ -19,6 +20,7 @@ void main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   Bloc.observer = MyBlocObserver();
+  configureDependencies();
   await LanguageCache().init();
   await SharePreference().init();
 

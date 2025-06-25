@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:red_cell/core/di/di.dart';
+import 'package:red_cell/views/account_managment/presentation/view_model/edit_profile_cubit.dart';
 import 'package:red_cell/views/account_managment/presentation/views/edit_profile.dart';
+import 'package:red_cell/views/account_managment/repo/edit_profile_repo_imple.dart';
 import 'package:red_cell/views/authentication/presentation/views/login/login.dart';
 import 'package:red_cell/views/authentication/presentation/views/signup/signup_second_screen.dart';
 import 'package:red_cell/views/authentication/presentation/views/signup/signup_first_screen.dart';
@@ -48,7 +51,11 @@ abstract class MyRoutes {
     requestDetails: (_) => RequestDetails(),
     requestLocation: (_) => RequestLocation(),
     myDonation: (_) => MyDonations(),
-    editProfile: (_) => EditProfile(),
+    editProfile: (_) =>
+        BlocProvider(
+          create: (context) => getIt<EditProfileCubit>(),
+          child: EditProfile(),
+        ),
     myRequests: (_) => MyRequests(),
     forgetPassword: (_) => ForgetPassword()
   };

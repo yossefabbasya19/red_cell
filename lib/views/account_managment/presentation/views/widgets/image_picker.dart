@@ -2,9 +2,11 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:red_cell/core/assets_maneger/assets_maneger.dart';
 import 'package:red_cell/core/remote_storage/update_image_fire_store.dart';
+import 'package:red_cell/views/account_managment/presentation/view_model/edit_profile_cubit.dart';
 
 class ImagePickerAndUpdate extends StatefulWidget {
   const ImagePickerAndUpdate({super.key, required this.imagePath});
@@ -32,7 +34,7 @@ class _ImagePickerAndUpdateState extends State<ImagePickerAndUpdate> {
         XFile? image = await imagePicker.pickImage(source: ImageSource.gallery);
         if (image != null) {
           pickedImage = XFile(image.path);
-          updateImage(FirebaseAuth.instance.currentUser!.uid, image.path);
+          BlocProvider.of<EditProfileCubit>(context).imagePath = image.path;
         }
 
         setState(() {});

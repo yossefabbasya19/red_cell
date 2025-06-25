@@ -6,7 +6,7 @@ import 'package:red_cell/core/helper/show_snack_bar.dart';
 import 'package:red_cell/core/my_routes/my_routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:red_cell/core/widgets/custom_eleveted_button.dart';
-import 'package:red_cell/views/authentication/signup/firebase_authentication/firebase_authentication.dart';
+import 'package:red_cell/core/remote_storage/firebase_authentication.dart';
 import 'package:red_cell/views/authentication/presentation/views/widgets/custom_text_form_field.dart';
 
 class ForgetPassword extends StatefulWidget {

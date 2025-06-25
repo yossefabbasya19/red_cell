@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
-import 'package:red_cell/views/authentication/social_auth/social_auth.dart';
 
 class SocialSign extends StatelessWidget {
   final void Function()? googleSocialSign;
@@ -25,7 +24,7 @@ class SocialSign extends StatelessWidget {
           Expanded(
             child: GestureDetector(
               onTap: () async {
-                await signInWithGoogle(context);
+                //await signInWithGoogle(context);
               },
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 21),
