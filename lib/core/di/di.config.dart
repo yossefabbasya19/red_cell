@@ -14,8 +14,8 @@ import 'package:injectable/injectable.dart' as _i526;
 
 import '../../views/account_managment/presentation/view_model/edit_profile_cubit.dart'
     as _i389;
-import '../../views/account_managment/repo/edit_profile_repo.dart' as _i882;
-import '../../views/account_managment/repo/edit_profile_repo_imple.dart'
+import '../../views/account_managment/data/repo/edit_profile_repo.dart' as _i882;
+import '../../views/account_managment/data/repo/edit_profile_repo_imple.dart'
     as _i55;
 
 extension GetItInjectableX on _i174.GetIt {

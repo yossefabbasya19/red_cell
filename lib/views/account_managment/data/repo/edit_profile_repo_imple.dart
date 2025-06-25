@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:red_cell/core/DM/user_info_DM.dart';
 import 'package:red_cell/core/failure/failure.dart';
 import 'package:red_cell/core/remote_storage/firebase_authentication.dart';
-import 'package:red_cell/views/account_managment/repo/edit_profile_repo.dart';
+import 'package:red_cell/views/account_managment/data/repo/edit_profile_repo.dart';
 @Injectable(as: EditProfileRepo)
 class EditProfileRepoImple extends EditProfileRepo {
   @FactoryMethod()

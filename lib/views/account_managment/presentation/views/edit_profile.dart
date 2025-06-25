@@ -11,7 +11,7 @@ import 'package:red_cell/core/widgets/custom_eleveted_button.dart';
 import 'package:red_cell/views/account_managment/presentation/view_model/edit_profile_cubit.dart';
 import 'package:red_cell/views/account_managment/presentation/views/widgets/image_picker.dart';
 import 'package:red_cell/views/account_managment/presentation/views/widgets/user_edit_field.dart';
-import 'package:red_cell/views/account_managment/repo/edit_profile_repo_imple.dart';
+import 'package:red_cell/views/account_managment/data/repo/edit_profile_repo_imple.dart';
 import 'package:red_cell/views/authentication/presentation/views/widgets/custom_status.dart';
 
 class EditProfile extends StatefulWidget {
