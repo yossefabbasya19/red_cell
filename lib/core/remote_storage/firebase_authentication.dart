@@ -88,4 +88,21 @@ abstract class FirebaseAuthentication {
       throw Exception(e);
     }
   }
+
+  Future<UserInfoDm> getSpecificUser(String userID) async {
+    DocumentSnapshot specificUser =
+        await FirebaseFirestore.instance
+            .collection(fireStoreUsers)
+            .doc(userID)
+            .get();
+    Map<String, dynamic> user = specificUser.data() as Map<String, dynamic>;
+    return UserInfoDm.fromJson(user, specificUser.id);
+  }
+
+  static Future<void> editProfile(UserInfoDm userInfo) async{
+   await FirebaseFirestore.instance
+        .collection(fireStoreUsers)
+        .doc(userInfo.docId)
+        .set(userInfo.toJson());
+  }
 }

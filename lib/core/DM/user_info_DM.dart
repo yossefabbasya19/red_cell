@@ -1,6 +1,7 @@
 import 'package:red_cell/core/constant.dart';
 
 class UserInfoDm {
+  static UserInfoDm? userInfoDm;
   String? docId;
   String? userName;
   String? emailAddress;
@@ -9,6 +10,7 @@ class UserInfoDm {
   String? country;
   String? phoneNumber;
   bool? isFemale;
+  List? myDonation=[];
   String? imagePath;
 
   UserInfoDm({
@@ -21,6 +23,7 @@ class UserInfoDm {
     this.phoneNumber,
     this.isFemale,
     this.imagePath,
+    this.myDonation
   });
   factory UserInfoDm.fromJson(json,String docId){
     return UserInfoDm(
@@ -31,8 +34,21 @@ class UserInfoDm {
       userName: json[fireStoreUsersUserName],
       password: json[fireStoreUsersPassword],
       emailAddress: json[fireStoreUsersUid],
+      myDonation: json['myDonation'],
       docId: docId,
       imagePath: json[fireStoreUsersProfileImage]
     );
+  }
+  toJson(){
+    return{
+      fireStoreUsersBirthDate:birthdayDate,
+      fireStoreUsersCountry:country,
+      fireStoreUsersPhoneNumber:phoneNumber,
+      fireStoreUsersGender:isFemale,
+      fireStoreUsersUserName:userName,
+      fireStoreUsersUid:emailAddress,
+      fireStoreUsersProfileImage:imagePath,
+      'myDonation':myDonation
+    };
   }
 }

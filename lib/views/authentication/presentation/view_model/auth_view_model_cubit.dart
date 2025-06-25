@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:red_cell/core/DM/user_info_DM.dart';
 import 'package:red_cell/core/helper/show_snack_bar.dart';
 import 'package:red_cell/views/authentication/data/repo/auth_repo.dart';
-import 'package:red_cell/views/authentication/signup/firebase_authentication/firebase_authentication.dart';
+import 'package:red_cell/core/remote_storage/firebase_authentication.dart';
 
 part 'auth_view_model_state.dart';
 
