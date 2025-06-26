@@ -106,4 +106,8 @@ abstract class FirebaseAuthentication {
         .doc(userInfo.docId)
         .set(userInfo.toJson());
   }
+
+  static Future<void> forgetPassword(String email) async {
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  }
 }

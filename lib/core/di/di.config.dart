@@ -24,6 +24,12 @@ import '../../views/donation_details/data/repo/donation_details_repo_imple.dart'
     as _i80;
 import '../../views/donation_details/presentation/view_model/dontation_details_cubit.dart'
     as _i935;
+import '../../views/forget_password/data/repo/forget_password_repo.dart'
+    as _i542;
+import '../../views/forget_password/data/repo/forget_password_repo_imple.dart'
+    as _i827;
+import '../../views/forget_password/presentation/view_model/forget_password_cubit.dart'
+    as _i446;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -36,8 +42,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i335.DonationDetailsRepo>(
       () => _i80.DonationDetailsRepoImple(),
     );
+    gh.factory<_i542.ForgetPasswordRepo>(() => _i827.ForgetPasswordRepoImple());
     gh.factory<_i389.EditProfileCubit>(
       () => _i389.EditProfileCubit(gh<_i533.EditProfileRepo>()),
+    );
+    gh.factory<_i446.ForgetPasswordCubit>(
+      () => _i446.ForgetPasswordCubit(gh<_i542.ForgetPasswordRepo>()),
     );
     gh.factory<_i935.DonationDetailsCubit>(
       () => _i935.DonationDetailsCubit(gh<_i335.DonationDetailsRepo>()),
