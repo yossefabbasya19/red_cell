@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_cell/core/helper/show_snack_bar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:red_cell/core/widgets/custom_eleveted_button.dart';
-import 'package:red_cell/views/request_details/cubit/add_donation_cubit.dart';
-import 'package:red_cell/views/request_details/cubit/add_donation_state.dart';
-import 'package:red_cell/views/request_details/widgets/hospital_info_card.dart';
-import 'package:red_cell/views/request_details/widgets/patient_details_card.dart';
+import 'package:red_cell/views/request_details/presentation/view_model/add_donation_cubit.dart';
+import 'package:red_cell/views/request_details/presentation/view_model/add_donation_state.dart';
+import 'package:red_cell/views/request_details/presentation/views/widgets/hospital_info_card.dart';
+import 'package:red_cell/views/request_details/presentation/views/widgets/patient_details_card.dart';
 
 class RequestDetails extends StatefulWidget {
   const RequestDetails({super.key});
@@ -22,9 +22,7 @@ class _RequestDetailsState extends State<RequestDetails> {
   double? long;
 
   @override
-  Widget build(BuildContext context) {
-    String dropDownValue = AppLocalizations.of(context)!.request_type;
-    return Scaffold(
+  Widget build(BuildContext context) {return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
         child: Padding(
@@ -48,7 +46,7 @@ class _RequestDetailsState extends State<RequestDetails> {
                       Navigator.pop(context);
                     }
                     if (state is AddDonationFailure) {
-                      print(state.errMessage);
+                      showSnackBar(context,state.errMessage);
                     }
                   },
                   builder: (context, state) {
@@ -65,17 +63,10 @@ class _RequestDetailsState extends State<RequestDetails> {
                           ),
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          lat = BlocProvider.of<AddDonationCubit>(context).lat;
-                          long =
-                              BlocProvider.of<AddDonationCubit>(context).long;
-                          if (lat != null && long != null) {
                             formKey.currentState!.save();
                             BlocProvider.of<AddDonationCubit>(
                               context,
                             ).addDonationRequest();
-                          } else {
-                            showSnackBar(context, AppLocalizations.of(context)!.select_place);
-                          }
                         }
                       },
                     );

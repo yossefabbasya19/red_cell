@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_cell/core/DM/donation_details_Dm.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
 import 'package:red_cell/core/extension/string_ex.dart';
-import 'package:red_cell/core/remote_storage/update_donation_state.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:red_cell/core/helper/show_snack_bar.dart';
+import 'package:red_cell/views/my_requests/presentation/view_model/my_request_cubit.dart';
+
 class CardHeader extends StatelessWidget {
   final DonationDetailsDm donationDetailsDm;
 
@@ -39,17 +42,33 @@ class CardHeader extends StatelessWidget {
           ],
         ),
         Spacer(),
-        ElevatedButton(
-          style: ButtonStyle(
-            backgroundColor: WidgetStatePropertyAll(ColorsManeger.red),
-            shape: WidgetStatePropertyAll(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-            ),
-          ),
-          onPressed: () {
-            updateDonationState(donationDetailsDm.docID);
+        BlocConsumer<MyRequestCubit, MyRequestState>(
+          listener: (context, state) {
+            if (state is MyRequestSuccess) {
+              showSnackBar(context, "your Post State is Updated");
+            }
+            if (state is MyRequestFailure) {
+              showSnackBar(context, state.errorMessage);
+            }
           },
-          child: Text(AppLocalizations.of(context)!.complete),
+          builder: (context, state) {
+            return ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(ColorsManeger.red),
+                shape: WidgetStatePropertyAll(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+              ),
+              onPressed: () {
+                BlocProvider.of<MyRequestCubit>(
+                  context,
+                ).updateRequestState(donationDetailsDm);
+              },
+              child: Text(AppLocalizations.of(context)!.complete),
+            );
+          },
         ),
       ],
     );

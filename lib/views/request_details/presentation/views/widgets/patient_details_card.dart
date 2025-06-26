@@ -4,10 +4,10 @@ import 'package:intl/intl.dart';
 import 'package:red_cell/core/constant.dart';
 import 'package:red_cell/core/helper/text_form_field_validation_function.dart';
 import 'package:red_cell/core/widgets/custom_drob_down_button.dart';
-import 'package:red_cell/views/request_details/cubit/add_donation_cubit.dart';
-import 'package:red_cell/views/request_details/widgets/request_details_Text_field.dart';
-import 'package:red_cell/views/request_details/widgets/request_details_date_picker.dart';
-import 'package:red_cell/views/request_details/widgets/request_details_drop_down.dart';
+import 'package:red_cell/views/request_details/presentation/view_model/add_donation_cubit.dart';
+import 'package:red_cell/views/request_details/presentation/views/widgets/request_details_Text_field.dart';
+import 'package:red_cell/views/request_details/presentation/views/widgets/request_details_date_picker.dart';
+import 'package:red_cell/views/request_details/presentation/views/widgets/request_details_drop_down.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PatientInfoCard extends StatefulWidget {
