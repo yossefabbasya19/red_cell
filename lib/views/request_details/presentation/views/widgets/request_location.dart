@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:red_cell/core/widgets/custom_eleveted_button.dart';
-import 'package:red_cell/views/request_details/cubit/add_donation_cubit.dart';
+import 'package:red_cell/views/request_details/presentation/view_model/add_donation_cubit.dart';
 
 class RequestLocation extends StatefulWidget {
   const RequestLocation({super.key});
@@ -66,6 +66,7 @@ class _RequestLocationState extends State<RequestLocation> {
                           argument.latitude;
                       BlocProvider.of<AddDonationCubit>(context).long =
                           argument.longitude;
+
                       setState(() {});
                     },
                     markers: myMarker,

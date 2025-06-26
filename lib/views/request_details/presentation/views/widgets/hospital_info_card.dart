@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
 import 'package:red_cell/core/constant.dart';
 import 'package:red_cell/core/my_routes/my_routes.dart';
-import 'package:red_cell/views/request_details/cubit/add_donation_cubit.dart';
-import 'package:red_cell/views/request_details/widgets/request_details_Text_field.dart';
-import 'package:red_cell/views/request_details/widgets/request_details_drop_down.dart';
+import 'package:red_cell/views/request_details/presentation/view_model/add_donation_cubit.dart';
+import 'package:red_cell/views/request_details/presentation/views/widgets/request_details_Text_field.dart';
+import 'package:red_cell/views/request_details/presentation/views/widgets/request_details_drop_down.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HospitalInfoCard extends StatefulWidget {

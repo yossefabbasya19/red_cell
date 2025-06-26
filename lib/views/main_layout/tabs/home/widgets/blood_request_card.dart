@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:red_cell/core/DM/donation_details_Dm.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
 import 'package:red_cell/views/main_layout/tabs/home/widgets/card_header.dart';
-import 'package:red_cell/views/my_requests/widgets/hospital_info.dart';
-import 'package:red_cell/views/my_requests/widgets/pateint_name.dart';
-import 'package:red_cell/views/my_requests/widgets/unit_needs.dart';
+import 'package:red_cell/views/my_requests/presentation/views/views/hospital_info.dart';
+import 'package:red_cell/views/my_requests/presentation/views/views/pateint_name.dart';
+import 'package:red_cell/views/my_requests/presentation/views/views/unit_needs.dart';
 
 class BloodRequestCard extends StatefulWidget {
   final bool isMyPost;

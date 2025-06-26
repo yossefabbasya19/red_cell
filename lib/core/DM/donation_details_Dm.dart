@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:red_cell/core/constant.dart';
 
 class DonationDetailsDm {
@@ -59,5 +60,25 @@ class DonationDetailsDm {
       uid: json[fireStoreDonationRequestsUid],
       progressState: json[fireStoreDonationRequestsProgressState],
     );
+  }
+  Map<String, dynamic> toJson(){
+    return {
+        fireStoreDonationRequestsTotalUnits: totalUnits,
+        fireStoreDonationRequestsValidTime: validTime,
+        fireStoreDonationRequestsPateintName: pateintName,
+        fireStoreDonationRequestsBloodType: bloodType,
+        fireStoreDonationRequestsRequestType: requestType,
+        fireStoreDonationRequestsPhoneNumber: phoneNumber,
+        fireStoreDonationRequestsHospitalName: hospitalName,
+        fireStoreDonationRequestsHospitalGovernorateAddress:
+        hospitalGovernorateAddress,
+        fireStoreDonationRequestsHospitalCityAddress: hospitalCityAddress,
+        fireStoreDonationRequestsLocationLat: lat,
+        fireStoreDonationRequestsLocationLong: lng,
+        fireStoreDonationRequestsCreateAt: DateTime.now(),
+        fireStoreDonationRequestsUid: FirebaseAuth.instance.currentUser!.uid,
+        fireStoreDonationRequestsProgressState: false,
+
+    };
   }
 }

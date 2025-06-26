@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
 import 'package:red_cell/core/remote_storage/remote_storage.dart';
 import 'package:red_cell/core/widgets/My_header.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';import 'package:red_cell/views/my_requests/widgets/requests_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';import 'package:red_cell/views/my_requests/presentation/views/views/requests_card.dart';
 
 class MyRequests extends StatefulWidget {
   const MyRequests({super.key});

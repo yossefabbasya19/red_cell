@@ -3,7 +3,7 @@ import 'package:red_cell/core/assets_maneger/assets_maneger.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 extension StringEx on String{
   String  selectImage(BuildContext context){
-    if(this == "دم"||this=='blood'){
+    if(this == "دم"||this=='Blood'){
       return AssetsManeger.requestBlood;
     }
     else if(this == "بلازما"||this=='Plasma'){
@@ -20,7 +20,7 @@ extension StringExOnBool on bool{
       return AppLocalizations.of(context)!.in_progress;
     }
     else{
-      return AppLocalizations.of(context)!.in_progress;
+      return AppLocalizations.of(context)!.complete;
     }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:red_cell/core/DM/donation_details_Dm.dart';
 import 'package:red_cell/core/DM/user_info_DM.dart';
 import 'package:red_cell/core/constant.dart';
 import 'package:red_cell/core/helper/show_snack_bar.dart';
@@ -109,5 +110,26 @@ abstract class FirebaseAuthentication {
 
   static Future<void> forgetPassword(String email) async {
     await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  }
+
+  static Future<void> updateDonationState(
+    DonationDetailsDm specificDonationID,
+  ) async {
+    await FirebaseFirestore.instance
+        .collection(fireStoreDonationRequests)
+        .doc(specificDonationID.docID)
+        .update({fireStoreDonationRequestsProgressState: true});
+  }
+
+  static CollectionReference requests = FirebaseFirestore.instance.collection(
+    fireStoreDonationRequests,
+  );
+
+  static Future<void> addDonationRequest(
+    DonationDetailsDm donationDetail,
+  ) async {
+    DocumentReference<Object?> doc = requests.doc();
+    donationDetail.docID = doc.id;
+    await doc.set(donationDetail.toJson());
   }
 }

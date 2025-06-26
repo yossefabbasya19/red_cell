@@ -16,10 +16,11 @@ import 'package:red_cell/views/forget_password/presentation/views/forget_passwor
 import 'package:red_cell/views/main_layout/main_layout.dart';
 import 'package:red_cell/views/donation_details/presentation/veiws/widgets/receiver_location.dart';
 import 'package:red_cell/views/main_layout/tabs/my_donations/my_donations%20.dart';
-import 'package:red_cell/views/my_requests/my_requests.dart';
+import 'package:red_cell/views/my_requests/presentation/view_model/my_request_cubit.dart';
+import 'package:red_cell/views/my_requests/presentation/views/my_requests.dart';
 import 'package:red_cell/views/on_boarding/on_boarding.dart';
-import 'package:red_cell/views/request_details/request_details.dart';
-import 'package:red_cell/views/request_details/widgets/request_location.dart';
+import 'package:red_cell/views/request_details/presentation/views/request_details.dart';
+import 'package:red_cell/views/request_details/presentation/views/widgets/request_location.dart';
 
 abstract class MyRoutes {
   static const String onBoarding = '/onBoarding';
@@ -62,7 +63,11 @@ abstract class MyRoutes {
           create: (context) => getIt<EditProfileCubit>(),
           child: EditProfile(),
         ),
-    myRequests: (_) => MyRequests(),
+    myRequests: (_) =>
+        BlocProvider(
+          create: (context) => getIt<MyRequestCubit>(),
+          child: MyRequests(),
+        ),
     forgetPassword: (_) =>
         BlocProvider(
           create: (context) => getIt<ForgetPasswordCubit>(),

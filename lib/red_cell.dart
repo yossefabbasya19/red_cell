@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
+import 'package:red_cell/core/di/di.dart';
 import 'package:red_cell/core/provider/config_provider/config_provider.dart';
 import 'package:red_cell/core/share_pref/language_cache/language_cache.dart';
 import 'package:red_cell/views/authentication/data/repo/auth_repo_imple.dart';
 import 'package:red_cell/views/authentication/presentation/view_model/auth_view_model_cubit.dart';
-import 'package:red_cell/views/request_details/cubit/add_donation_cubit.dart';
+import 'package:red_cell/views/request_details/presentation/view_model/add_donation_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:red_cell/config/theme/my_theme.dart';
@@ -36,7 +37,7 @@ class _RedCellState extends State<RedCell> {
     ConfigProvider config = Provider.of<ConfigProvider>(context);
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => AddDonationCubit()),
+        BlocProvider(create: (context) => getIt<AddDonationCubit>()),
         BlocProvider(create: (context) => AuthViewModelCubit(AuthRepoImple())),
       ],
       child: MaterialApp(
