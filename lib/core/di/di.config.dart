@@ -12,11 +12,18 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../views/account_managment/data/repo/edit_profile_repo.dart'
+    as _i533;
+import '../../views/account_managment/data/repo/edit_profile_repo_imple.dart'
+    as _i865;
 import '../../views/account_managment/presentation/view_model/edit_profile_cubit.dart'
     as _i389;
-import '../../views/account_managment/data/repo/edit_profile_repo.dart' as _i882;
-import '../../views/account_managment/data/repo/edit_profile_repo_imple.dart'
-    as _i55;
+import '../../views/donation_details/data/repo/donation_details_repo.dart'
+    as _i335;
+import '../../views/donation_details/data/repo/donation_details_repo_imple.dart'
+    as _i80;
+import '../../views/donation_details/presentation/view_model/dontation_details_cubit.dart'
+    as _i935;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -25,9 +32,15 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
-    gh.factory<_i882.EditProfileRepo>(() => _i55.EditProfileRepoImple());
+    gh.factory<_i533.EditProfileRepo>(() => _i865.EditProfileRepoImple());
+    gh.factory<_i335.DonationDetailsRepo>(
+      () => _i80.DonationDetailsRepoImple(),
+    );
     gh.factory<_i389.EditProfileCubit>(
-      () => _i389.EditProfileCubit(gh<_i882.EditProfileRepo>()),
+      () => _i389.EditProfileCubit(gh<_i533.EditProfileRepo>()),
+    );
+    gh.factory<_i935.DonationDetailsCubit>(
+      () => _i935.DonationDetailsCubit(gh<_i335.DonationDetailsRepo>()),
     );
     return this;
   }

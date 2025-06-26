@@ -48,7 +48,11 @@ class _BloodRequestCardState extends State<BloodRequestCard> {
             padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8),
             child: Column(
               children: [
-                CardHeader(donationDetailsDm: widget.donationDetailsDm, userId: userId,isMyDonation: widget.isMyDonation,),
+                CardHeader(
+                  donationDetailsDm: widget.donationDetailsDm,
+                  userId: userId,
+                  isMyDonation: widget.isMyDonation,
+                ),
                 PateintName(donationDetailsDm: widget.donationDetailsDm),
                 SizedBox(height: 8),
                 UnitNeeds(donationDetailsDm: widget.donationDetailsDm),

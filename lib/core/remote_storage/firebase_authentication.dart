@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:red_cell/core/DM/user_info_DM.dart';
 import 'package:red_cell/core/constant.dart';
 import 'package:red_cell/core/helper/show_snack_bar.dart';
+import 'package:red_cell/core/remote_storage/get_specific_user.dart';
 
 abstract class FirebaseAuthentication {
   static CollectionReference users = FirebaseFirestore.instance.collection(
@@ -54,14 +55,14 @@ abstract class FirebaseAuthentication {
     );
     addUserinfo(userInfoDM, credential);
     final user = FirebaseAuth.instance.currentUser;
-    await user?.sendEmailVerification();
+    UserInfoDm.userInfoDm = await getSpecificUser(user!.uid);
+    await user.sendEmailVerification();
   }
 
   static Future<void> login(String emailAddress, String password) async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: emailAddress,
-      password: password,
-    );
+    UserCredential user = await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: emailAddress, password: password);
+    UserInfoDm.userInfoDm = await getSpecificUser(user.user!.uid);
   }
 
   static Future<void> addUserinfo(
@@ -89,7 +90,7 @@ abstract class FirebaseAuthentication {
     }
   }
 
-  Future<UserInfoDm> getSpecificUser(String userID) async {
+  static Future<UserInfoDm> getSpecificUser(String userID) async {
     DocumentSnapshot specificUser =
         await FirebaseFirestore.instance
             .collection(fireStoreUsers)
@@ -99,8 +100,8 @@ abstract class FirebaseAuthentication {
     return UserInfoDm.fromJson(user, specificUser.id);
   }
 
-  static Future<void> editProfile(UserInfoDm userInfo) async{
-   await FirebaseFirestore.instance
+  static Future<void> editProfile(UserInfoDm userInfo) async {
+    await FirebaseFirestore.instance
         .collection(fireStoreUsers)
         .doc(userInfo.docId)
         .set(userInfo.toJson());
