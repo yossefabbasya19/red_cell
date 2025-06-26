@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
 import 'package:red_cell/core/helper/show_snack_bar.dart';
 import 'package:red_cell/views/authentication/presentation/views/widgets/custom_text_form_field.dart';
-import 'package:red_cell/views/chat/cubit/chat_cubit.dart';
-import 'package:red_cell/views/chat/model/message_model.dart';
+import 'package:red_cell/views/chat/presentation/view_model/chat_cubit.dart';
+import 'package:red_cell/views/chat/data/model/message_model.dart';
 
 class Chat extends StatefulWidget {
   const Chat({super.key});

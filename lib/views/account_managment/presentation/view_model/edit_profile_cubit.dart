@@ -2,9 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:red_cell/core/DM/user_info_DM.dart';
-import 'package:red_cell/views/account_managment/repo/edit_profile_repo.dart';
+import 'package:red_cell/views/account_managment/data/repo/edit_profile_repo.dart';
 
-import '../../repo/edit_profile_repo.dart';
+import '../../data/repo/edit_profile_repo.dart';
 
 part 'edit_profile_state.dart';
 @Injectable()

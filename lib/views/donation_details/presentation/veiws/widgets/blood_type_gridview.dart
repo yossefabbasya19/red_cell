@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:red_cell/core/DM/donation_details_Dm.dart';
 import 'package:red_cell/core/colors_maneger/colors_maneger.dart';
 import 'package:red_cell/core/constant.dart';
-import 'package:red_cell/views/donation_details/widgets/blood_type_card.dart';
+import 'package:red_cell/views/donation_details/presentation/veiws/widgets/blood_type_card.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BloodTypeGridview extends StatelessWidget {

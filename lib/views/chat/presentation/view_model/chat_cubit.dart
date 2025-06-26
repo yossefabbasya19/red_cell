@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:meta/meta.dart';
 import 'package:red_cell/core/helper/show_snack_bar.dart';
-import 'package:red_cell/views/chat/model/message_model.dart';
+import 'package:red_cell/views/chat/data/model/message_model.dart';
 
 part 'chat_state.dart';
 

@@ -61,9 +61,7 @@ class CardHeader extends StatelessWidget {
           onPressed: () async {
             if (isMyDonation ?? false) {
               deletePostFromMyDonations(
-                context,
                donationDetailsDm,
-                userId!,
               );
             } else {
               Navigator.pushNamed(
